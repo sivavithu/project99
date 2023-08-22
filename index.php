@@ -2,15 +2,15 @@
     session_start();
     if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
         if($_SESSION['role']=='admin'){
-            header("location:adminuser.php");
+            header("location:/adminuser.php");
             exit;}
     
     else {
-        header("location:student/home.php");
+        header("location:stude/nt/home.php");
         exit;
     }
 }
 else{
-    header("location:login.php");
+    header("location:/login.php");
     exit;
 }?>

@@ -89,7 +89,7 @@
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['role'] = $row['role'];
                ob_end_clean();
-                 include("index.php");
+               header("location:/student/home.php");
                         exit;
 
                   

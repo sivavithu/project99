@@ -31,7 +31,7 @@
      if(isset($_POST['submit'])){
         if(isset($_POST['email'])){
             $email=$_POST['email'];
-            
+              echo "sss";
            
             $query = "select * from users where email='$email'";
             $result = mysqli_query($con, $query);

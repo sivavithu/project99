@@ -11,6 +11,6 @@
     }
 }
 else{
-    header("location:/student/home.php");
+    header("location:/login.php");
     exit;
 }?>

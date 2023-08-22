@@ -42,7 +42,7 @@
             }
                
             $row = mysqli_fetch_assoc($result);
-            print_r($row);
+            print_r($row['email']);
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;

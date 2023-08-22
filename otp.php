@@ -39,7 +39,7 @@
             if (!$result) {
                 die("connection failed" . mysqli_connect_error());
             }
-     
+               echo "sss";
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;
@@ -117,7 +117,7 @@ function displayform1(){?>
 <?php }function displayform2(){
     ?>
     <form action="" method="post">
-        OTP: <input type="number" name="otp" id="otp"><span><?php if(isset($message)&& $message='invalidptp'){echo"invaliotp";}?></span><br>
+        OTP: <input type="number" name="otp" id="otp"><span><?php if(isset($message)&& $message='invalidotp'){echo"invaliotp";}?></span><br>
         <input type="submit" name="verify" value="Verify"><br><br><br>
     </form>
     

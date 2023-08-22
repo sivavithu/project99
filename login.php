@@ -92,8 +92,9 @@
                  header("Location:/index.php");
                         exit;
 
-                  exit;
+                  
             } else {
+                ob_end_clean();
                 echo "<script>showerr();</script>";
             }
         }

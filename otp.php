@@ -31,7 +31,7 @@
      if(isset($_POST['submit'])){
         if(isset($_POST['email'])){
             $email=$_POST['email'];
-              echo "sss";
+              
            
             $query = "select * from users where email='$email'";
             $result = mysqli_query($con, $query);
@@ -39,11 +39,11 @@
             if (!$result) {
                 die("connection failed" . mysqli_connect_error());
             }
-               echo "sss";
+               
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;
-                echo "sss";
+                
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
                 header("location:/sendotp.php");
@@ -106,7 +106,7 @@ function showerr(){
 
 function displayform1(){?>
 <div class="emailchecker">
-   <form action="" method="post">
+   <form action="/otp.php" method="post">
       <span>email:</span><input required type="text" name="email"><span><?php if(isset($message)){showerr();}?></span><br>
       <input type="submit" name="submit" value="submit">
    </form>

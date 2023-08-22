@@ -32,7 +32,7 @@
        
         if(isset($_POST['email'])){
             $email=$_POST['email'];
-              
+              echo $email;
            
             $query = "select * from users where email='$email'";
             $result = mysqli_query($con, $query);
@@ -44,7 +44,7 @@
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;
-                  echo "Sss";
+                  
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
                 header("location:/sendotp.php");

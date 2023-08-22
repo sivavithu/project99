@@ -33,8 +33,8 @@
     if (isset($_POST['email'])) {
         $email = $_POST['email'];
 
-        $query = "select * from users where email='$email'";
-        $result = mysqli_query($con, $query);
+        $queryforemail = "select * from users where email='$email'";
+        $result = mysqli_query($con, $queryforemail);
         
         if (!$result) {
             echo "Connection failed: " . mysqli_connect_error();

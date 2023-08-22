@@ -9,6 +9,7 @@
 <body>
     <?php
     session_start();
+    ob_start();
     if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
         if($_SESSION['role']=='admin'){
             header("location:/adminuser.php");

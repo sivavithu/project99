@@ -76,8 +76,8 @@ try {
     echo 'Message has been sent';
 
  
-    header("location:/otp.php");
-    exit;
+    //header("location:/otp.php");
+   // exit;
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     session_unset();

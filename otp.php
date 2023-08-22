@@ -40,11 +40,11 @@
             if (!$result) {
                 die("connection failed" . mysqli_connect_error());
             }
-                 echo "Sss";
+               
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;
-                
+                  echo "Sss";
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
                 header("location:/sendotp.php");

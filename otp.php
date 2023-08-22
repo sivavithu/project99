@@ -36,17 +36,17 @@
            
             $query = "select * from users where email='$email'";
             $result = mysqli_query($con, $query);
-            
+            echo "sss";
             if (!$result) {
-                die("connection failed" . mysqli_connect_error());
+                echo "connection failed" . mysqli_connect_error();
             }
                
-            $row = mysqli_fetch_assoc($result);
-            print_r($row['email']);
+           
+       
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;
-                
+                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
                 header("location:/sendotp.php");
                 exit;

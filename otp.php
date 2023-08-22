@@ -19,7 +19,7 @@
         exit;
     }
 }
-    include "connection.php";
+    include "/connection.php";
     if(isset($_SESSION['user_id'])){
         displayform2();
 
@@ -45,7 +45,7 @@
                 $_SESSION['email']=$email;
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
-                header("location:../sendotp.php");
+                header("location:/sendotp.php");
                 exit;
 
             }

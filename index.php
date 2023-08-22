@@ -6,7 +6,7 @@
             exit;}
     
     else {
-        header("location:stude/nt/home.php");
+        header("location:student/home.php");
         exit;
     }
 }

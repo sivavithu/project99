@@ -82,8 +82,9 @@
             }
            if(mysqli_num_rows($result)!=0){
             $row = mysqli_fetch_assoc($result);
-         echo "sss";
+         
             if (password_verify($password, $row['password'])) {
+                echo "sss";
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['role'] = $row['role'];
                

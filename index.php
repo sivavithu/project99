@@ -6,7 +6,8 @@
             exit;}
     
     else {
-         echo"<script>window.location.href='/student/home.php'</script>";
+         header("location:/student/home.php");
+        exit;
     }
 }
 else{

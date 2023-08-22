@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+h<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +35,7 @@
 
         $queryforemail = "select * from users where email='$email'";
         $result = mysqli_query($con, $queryforemail);
-        
+        echo mysqli_num_rows($result);
         if (!$result) {
             echo "Connection failed: " . mysqli_connect_error();
         }

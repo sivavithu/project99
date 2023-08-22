@@ -33,7 +33,7 @@
     if (isset($_POST['email'])) {
         $email = $_POST['email'];
 
-        $queryforemail = "select * from users where email='megavithu15@gmail.com'";
+        $queryforemail = "select * from users where email='$email'";
         $result = mysqli_query($con, $queryforemail);
         
         if (!$result) {

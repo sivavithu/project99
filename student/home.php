@@ -30,7 +30,7 @@
    
 
  
-   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& ($_SESSION['role']=='student'||$_SESSION['role']=='admin')){?>
+   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){?>
  <body>
         <div class="wrapper">
             <div class="top_navbar">
@@ -136,7 +136,7 @@
     </body>
     <?php }
     else{
-        header("location:Login.php");
+        header("location:../login.php");
        exit;
     } ?>
 </html>

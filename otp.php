@@ -28,36 +28,29 @@
         displayform1();
     }
 
-     if(isset($_POST['submit'])){
-       
-        if(isset($_POST['email'])){
-            $email=$_POST['email'];
-              
-           
-            $query = "select * from users where email='$email'";
-            $result = mysqli_query($con, $query);
-            echo "sss";
-            if (!$result) {
-                echo "connection failed" . mysqli_connect_error();
-            }
-               
-           
-       
-            
-            if(mysqli_num_rows($result)!=0){
-                $_SESSION['email']=$email;
-                 $row = mysqli_fetch_assoc($result);
-                $_SESSION['user_id']=$row['user_id'];
-                header("location:/sendotp.php");
-                exit;
+    if (isset($_POST['submit'])) { 
 
-            }
-            else{
-                $emailerr=true;
-            }
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+
+        $query = "select * from users where email='$email'";
+        $result = mysqli_query($con, $query);
+        
+        if (!$result) {
+            echo "Connection failed: " . mysqli_connect_error();
         }
 
-     }
+        if (mysqli_num_rows($result) != 0) {
+            $_SESSION['email'] = $email;
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION['user_id'] = $row['user_id'];
+            header("location:/sendotp.php");
+            exit;
+        } else {
+            $emailerr = true;
+        }
+    }
+}
 
     if(isset($_SESSION['user_id'])&&isset($_SESSION['timestamp'])){
         $user=$_SESSION['user_id'];

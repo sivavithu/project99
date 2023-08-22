@@ -46,7 +46,8 @@
                 
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
-                echo  "<script>window.location.href='/sendotp.php'</script>";
+                header("location:/sendotp.php");
+                exit;
 
             }
             else{

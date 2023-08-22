@@ -39,7 +39,7 @@
         if (!$result) {
             echo "Connection failed: " . mysqli_connect_error();
         }
-
+        else{
         if (mysqli_num_rows($result) != 0) {
             $_SESSION['email'] = $email;
             $row = mysqli_fetch_assoc($result);
@@ -51,6 +51,7 @@
         }
     }
 }
+    }
 
     if(isset($_SESSION['user_id'])&&isset($_SESSION['timestamp'])){
         $user=$_SESSION['user_id'];

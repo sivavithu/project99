@@ -87,7 +87,7 @@
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['role'] = $row['role'];
                
-                  header("location:index.php");
+                  header("location:/index.php");
                   exit;
             } else {
                 echo "<script>showerr();</script>";

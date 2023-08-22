@@ -35,9 +35,9 @@
            
             $query = "select * from users where email='$email'";
             $result = mysqli_query($con, $query);
-            
+            print_r( $result);
             if (!$result) {
-                echo "connection failed" . mysqli_connect_error();
+                die("connection failed" . mysqli_connect_error());
             }
      
             
@@ -50,7 +50,7 @@
 
             }
             else{
-                echo "er"
+                $emailerr=true;
             }
         }
 

@@ -52,6 +52,7 @@
 
     <?php
     session_start();
+    ob_start();
     if(isset($_SESSION['error'])){
         echo $_SESSION['error'];
     }
@@ -87,7 +88,7 @@
                 echo "sss";
                 $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['role'] = $row['role'];
-               
+               ob_end_clean();
                  header("Location:/index.php");
                         exit;
 

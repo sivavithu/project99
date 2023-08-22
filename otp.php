@@ -32,7 +32,7 @@
        
         if(isset($_POST['email'])){
             $email=$_POST['email'];
-                echo "Sss";
+              
            
             $query = "select * from users where email='$email'";
             $result = mysqli_query($con, $query);
@@ -40,7 +40,7 @@
             if (!$result) {
                 die("connection failed" . mysqli_connect_error());
             }
-               
+                 echo "Sss";
             
             if(mysqli_num_rows($result)!=0){
                 $_SESSION['email']=$email;

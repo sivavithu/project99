@@ -45,7 +45,7 @@
                 $_SESSION['email']=$email;
                 $row = mysqli_fetch_assoc($result);
                 $_SESSION['user_id']=$row['user_id'];
-                header("location:sendotp.php");
+                header("location:/sendotp.php");
                 exit;
 
             }
@@ -134,7 +134,7 @@ function displayform1(){?>
         
         
         function sendOtp() {
-           window.location.href="sendotp.php";
+           window.location.href="/sendotp.php";
         }
         
 

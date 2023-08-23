@@ -1,3 +1,7 @@
+ <?php 
+ob_start();
+session_start();
+if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,12 +30,7 @@
 
     </head>
    
-    <?php  session_start();
-   
-
- 
-   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){?>
- <body>
+      <body>
         <div class="wrapper">
             <div class="top_navbar">
                 <div class="hamburger">

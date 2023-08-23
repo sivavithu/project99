@@ -1,17 +1,4 @@
- <?php 
 
-
-session_start();
-
-// Debugging: Check the session variables
-
-
-// Check if user is authenticated and has the role of a student
-//if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {
-    // Debugging: Display a message to confirm that the condition is met
-
- 
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -143,9 +130,5 @@ session_start();
         
   
     </body>
-    <?php }
-   // else{
-       // header("location:../login.php");
-      // exit;
-   // } ?>
+   
 </html>

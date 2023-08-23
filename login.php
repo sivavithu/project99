@@ -89,8 +89,8 @@
     $_SESSION['role'] = $row['role'];
                echo   $_SESSION['user_id'],$_SESSION['role'];
     
-    ob_end_clean(); // Clear the output buffer
-  echo '<script>window.location.href = "/index.php";</script>';
+   // ob_end_clean(); // Clear the output buffer
+ // echo '<script>window.location.href = "/index.php";</script>';
 exit;
 
 } 

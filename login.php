@@ -91,10 +91,7 @@
     ob_end_clean(); // Clear the output buffer
     header("Location: ./index.php");
     exit;
-} else {
-    ob_end_clean(); // Clear the output buffer
-    echo "<script>showerr();</script>";
-}
+} 
 
                   
             else {

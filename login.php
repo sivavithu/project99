@@ -91,9 +91,14 @@ ob_start();
            if (password_verify($password, $row['password'])) {
              $_SESSION['user_id'] = $row['user_id'];
               $_SESSION['role'] = $row['role'];
-               echo   "hi",$_SESSION['user_id'],$_SESSION['role'];
-                header("location:index.php");
-               exit;
+                if ($_SESSION['role'] == 'admin') {
+            header("location:/adminuser.php");
+            exit;
+        } else {
+            header("location:/student/home.php");
+            exit;
+        }
+               
   
 
 

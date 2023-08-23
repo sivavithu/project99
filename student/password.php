@@ -164,7 +164,11 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                     <br><br>
                         
                     <div class="item1">
-                   
+                   <div class="search">
+                    <form action="history.php" method="post">
+        <input type="text" name="key">
+         <input type="submit" name="search" value="search">
+    </form>
     <form action="" method="post">
     <label for="new_password">New Password:</label>
 <input type="password" id="new_password" name="password" required>

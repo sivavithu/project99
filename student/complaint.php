@@ -1,3 +1,18 @@
+<?php ob_start(); ?>
+<?php 
+
+
+session_start();
+
+// Debugging: Check the session variables
+
+
+
+if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+     header("location:../login.php");
+       exit;
+}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,11 +50,10 @@
 
     </head>
     <body>
- <?php  session_start();
+ <?php 
    
 
   
-   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){
        $user=$_SESSION['user_id'];
        
        function name(){
@@ -244,12 +258,8 @@
         </form>
                     </div>
                         
-    <?php
-   }
-  else{
-    header("location:../Login.php");
-   exit;
-} ?>
+   
+
 </div>
     </body>
 </html>

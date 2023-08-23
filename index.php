@@ -22,4 +22,5 @@ if ($result) {
 } else {
     echo "error";
 }*/
-echo "Hi"; ?>
+header("location:/connection.php")l
+exit;?>

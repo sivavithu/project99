@@ -56,11 +56,11 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
 
     </head>
     <body>
- <?php  session_start();
+ <?php  
    
-  include "../connection.php";
+  include ("../connection.php");
  
-   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){
+  
        $user=$_SESSION['user_id'];
        
        if(isset($_POST['change'])){
@@ -68,7 +68,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
         $sql = "UPDATE users SET password ='$password' WHERE user_id = '$user'";
         $result=mysqli_query($con,$sql);
         if($result){
-         header("location:home.php");
+         header("location:./home.php");
          exit;
         }
          else{
@@ -181,10 +181,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
            
         
         </div>	
- <?php }
-  else{
-    header("location:Login.php");
-   exit;
-} ?>
+ 
+  
     </body>
 </html>

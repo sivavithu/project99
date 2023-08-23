@@ -85,31 +85,31 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                         </div>
                         <ul>
                             <li>
-                                <a href="home.php" >
+                                <a href="./home.php" >
                                 <span class="icon"><i class="ri-home-4-fill"></i></span>
                                 <span class="title">Home</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="profile.php" class="active">
+                                <a href="./profile.php" class="active">
                                 <span class="icon"><i class="ri-account-circle-fill"></i></span>
                                 <span class="title">Profile</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="password.php">
+                                <a href="./password.php">
                                 <span class="icon"><i class="ri-key-2-fill"></i></span>
                                 <span class="title">Change Password</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="complaint.php">
+                                <a href="./complaint.php">
                                 <span class="icon"><i class="ri-add-circle-fill"></i></span>
                                 <span class="title">Add Complaint</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="history.php">
+                                <a href="./history.php">
                                 <span class="icon"><i class="ri-check-double-line"></i></span>
                                 <span class="title">Your Complaints</span>
                                 </a>
@@ -125,7 +125,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                         
                     <div class="item1">
                        <?php
-                       include "../connection.php";
+                       include ("../connection.php");
                        $sql = "SELECT * FROM users WHERE user_id='$user'";
                        $result = mysqli_query($con, $sql);
 

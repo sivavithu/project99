@@ -1,4 +1,4 @@
-<?php
+<?/*php
     session_start();
     if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
         if($_SESSION['role']=='admin'){
@@ -12,5 +12,11 @@
 }
 else{
     header("location:/login.php");
-    exit;
+    exit;*/
+include ("/connection.php");
+$sql="select * from users where user_id=6";
+$result=mysqli_query($con,$sql);
+if($result)$row=mysqli_fetch_assoc($result);
+else echo "error";
+echo $row['id'];
 }?>

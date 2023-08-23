@@ -126,6 +126,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                     <div class="item1">
                        <?php
                        include ("../connection.php");
+                       $user=$_SESSION['user_id'];
                        $sql = "SELECT * FROM users WHERE user_id='$user'";
                        $result = mysqli_query($con, $sql);
 

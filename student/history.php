@@ -1,3 +1,18 @@
+<?php ob_start(); ?>
+<?php 
+
+
+session_start();
+
+// Debugging: Check the session variables
+
+
+
+if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+     header("location:../login.php");
+       exit;
+}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,7 +39,7 @@
     function button(str,issue_id){
         let location;
         if(str=="updater"){
-            location="complaint.php"
+            location="./complaint.php"
         }
         else{
             location="";
@@ -57,11 +72,11 @@
 
     </head>
     <body>
- <?php  session_start();
+ <?php  
    
 
  
-   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){
+  
        $user=$_SESSION['user_id'];
        include "../connection.php"; 
        if(isset($_POST['deleter'])){
@@ -161,11 +176,11 @@
      if(!isset($_POST['search'])){
       $sql="select * from complaints where user_id=$user";
           $result=mysqli_query($con, $sql);
-      if ($result) {
-        echo "Complaint submitted successfully!";
+      if (!$result) {
+       echo "Error: " . mysqli_error($con);
     } else {
-        echo "Error: " . mysqli_error($con);
-    }
+        
+    
 
      while($row=mysqli_fetch_assoc($result)){?>
 
@@ -183,12 +198,9 @@
 
                  
                        <?php }
-     }
-    }
-  else{
-    header("location:login.php");
-   exit;
-} ?>
+      }
+     } ?>
+  
 </div>
     </body>
 </html>

@@ -84,16 +84,20 @@
            if(mysqli_num_rows($result)!=0){
             $row = mysqli_fetch_assoc($result);
          
-            if (password_verify($password, $row['password'])) {
-                echo "sss";
-                $_SESSION['user_id'] = $row['user_id'];
-                $_SESSION['role'] = $row['role'];
-               ob_end_clean();
-               header("location:./index.php");
-                        exit;
+           if (password_verify($password, $row['password'])) {
+    $_SESSION['user_id'] = $row['user_id'];
+    $_SESSION['role'] = $row['role'];
+    
+    ob_end_clean(); // Clear the output buffer
+    header("Location: ./index.php");
+    exit;
+} else {
+    ob_end_clean(); // Clear the output buffer
+    echo "<script>showerr();</script>";
+}
 
                   
-            } else {
+            else {
                 ob_end_clean();
                 echo "<script>showerr();</script>";
             }

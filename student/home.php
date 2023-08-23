@@ -4,8 +4,8 @@ ob_start();
 session_start();
 
 // Debugging: Check the session variables
-echo "User ID: " . $_SESSION['user_id'] . "<br>";
-echo "Role: " . $_SESSION['role'] . "<br>";
+echo "User ID: " . vardump($_SESSION['user_id']) . "<br>";
+echo "Role: " . vardump($_SESSION['role'] ). "<br>";
 
 // Check if user is authenticated and has the role of a student
 if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {

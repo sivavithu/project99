@@ -1,9 +1,17 @@
  <?php 
 ob_start();
+ob_start();
 session_start();
-echo $_SESSION['user_id'];
-echo $_SESSION['role'];
-if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){?>
+
+// Debugging: Check the session variables
+echo "User ID: " . $_SESSION['user_id'] . "<br>";
+echo "Role: " . $_SESSION['role'] . "<br>";
+
+// Check if user is authenticated and has the role of a student
+if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {
+    // Debugging: Display a message to confirm that the condition is met
+    echo "Authenticated as a student.<br>";
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>

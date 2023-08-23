@@ -169,7 +169,11 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                         <h2> Welcome to department of computer science complaint register portal </h2>
                     </center>
                     <br><br>
-                        
+                        <div class="search">
+                    <form action="history.php" method="post">
+        <input type="text" name="key">
+         <input type="submit" name="search" value="search">
+    </form>
                     <div class="item1">
                         <?php
                     include "../connection.php";  

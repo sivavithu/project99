@@ -75,15 +75,16 @@
         if ((isset($_POST['username']) && isset($_POST['password']))) {
             $username = $_POST['username'];
             $password = $_POST['password'];
-
+             echo"st";
             $query = "select * from users where user_name='$username'";
             $result = mysqli_query($con, $query);
             if (!$result) {
                 die("connection failed" . mysqli_connect_error());
             }
+            echo "hello";
            if(mysqli_num_rows($result)!=0){
             $row = mysqli_fetch_assoc($result);
-         
+            echo "hi";
            if (password_verify($password, $row['password'])) {
     $_SESSION['user_id'] = $row['user_id'];
     $_SESSION['role'] = $row['role'];

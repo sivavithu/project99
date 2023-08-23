@@ -7,7 +7,7 @@ session_start();
 
 
 // Check if user is authenticated and has the role of a student
-if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {
+//if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {
     // Debugging: Display a message to confirm that the condition is met
 
  
@@ -144,8 +144,8 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] 
   
     </body>
     <?php }
-    else{
-        header("location:../login.php");
-       exit;
-    } ?>
+   // else{
+       // header("location:../login.php");
+      // exit;
+   // } ?>
 </html>

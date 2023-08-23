@@ -1,7 +1,7 @@
  <?php 
 
 session_start();
-echo "$_SESSION['user_id']";
+echo $_SESSION['user_id'];
 if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,7 @@
 <?php  
 
  ob_start();
+ session_start();
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -30,8 +31,8 @@ function generateNumericOTP($n) {
 }
 
 
-include "connection.php";
-session_start();
+include ("connection.php");
+
 if(isset($_SESSION['user_id']) && isset($_SESSION['email'])){
     
     $user=$_SESSION['user_id'];
@@ -39,12 +40,12 @@ if(isset($_SESSION['user_id']) && isset($_SESSION['email'])){
     $otp=generateNumericOTP(6);
     date_default_timezone_set('Asia/Colombo'); 
     $date = date("Y-m-d H:i:s", strtotime("+0 minutes"));
-      $_SESSION['timestamp']=$date;
+    $_SESSION['timestamp']=$date;
 
     $insertQuery = "INSERT INTO authenthication(user_id,timestamp,otp) VALUES ('$user','$date','$otp')";
     $result=mysqli_query($con,$insertQuery);
 	$id=1;
-   $sql="select * from stmp where id='$id'";
+    $sql="select * from stmp where id='$id'";
 	$val=mysqli_query($con,$sql);
 	$row=mysqli_fetch_assoc($val);
 
@@ -76,8 +77,8 @@ try {
     echo 'Message has been sent';
 
  
-    //header("location:/otp.php");
-   // exit;
+    header("location:/otp.php");
+   exit;
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     session_unset();

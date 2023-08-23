@@ -4,13 +4,13 @@
 session_start();
 
 // Debugging: Check the session variables
-echo "User ID: " . vardump($_SESSION['user_id']) . "<br>";
-echo "Role: " . vardump($_SESSION['role'] ). "<br>";
+\
 
 // Check if user is authenticated and has the role of a student
 if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {
     // Debugging: Display a message to confirm that the condition is met
-    echo "Authenticated as a student.<br>";
+
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -6,7 +6,7 @@ $dbname="webtechpro1";
 $con=mysqli_connect($hostname,$username,$password,$dbname);
 if(!$con)
 {
-    die("connection failed:".mysqli_connect_error($con));
+    echo "connection failed:".mysqli_connect_error($con);
 
 }
 

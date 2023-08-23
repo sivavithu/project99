@@ -89,6 +89,7 @@
              $_SESSION['user_id'] = $row['user_id'];
               $_SESSION['role'] = $row['role'];
                echo   "hi",$_SESSION['user_id'],$_SESSION['role'];
+                ob_end_clean();
                 header("location:index.php");
                exit;
   

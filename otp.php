@@ -1,3 +1,4 @@
+<?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
 <body>
     <?php
     session_start();
-    ob_start();
+    
     if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
         if($_SESSION['role']=='admin'){
             header("location:/adminuser.php");
@@ -20,7 +21,7 @@
         exit;
     }
 }
-    include "/connection.php";
+    include ("connection.php");
     if(isset($_SESSION['user_id'])){
         displayform2();
 

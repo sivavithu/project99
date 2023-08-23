@@ -89,7 +89,7 @@
     $_SESSION['role'] = $row['role'];
     
     ob_end_clean(); // Clear the output buffer
-    header("Location: ./index.php");
+    header("location:/index.php");
     exit;
 } 
 

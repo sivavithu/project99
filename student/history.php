@@ -203,7 +203,38 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                  
                        <?php }
       }
-     } ?>
+     }
+          else if(isset($_POST['search'])){
+        $keywords=$_POST['key'];
+        $sql = "SELECT * FROM complaints WHERE issue LIKE '%$keywords%' or  username LIKE '%$keywords%' or  location LIKE '%$keywords%'
+                 or  type LIKE '%$keywords%' or  status LIKE '%$keywords%' or  issue LIKE '%$keywords%'";
+        $result = mysqli_query($con, $sql);
+
+      if ($result) {
+        
+            while ($row = mysqli_fetch_assoc($result)) {?>
+            
+         <div class='history'>
+            
+            <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
+            <p><strong>Date:</strong> <?php echo $row['date']; ?></p>
+            <p><strong>Status:</strong> <?php echo $row['status']; ?></p>
+            <p><strong>issue:</strong> <?php echo $row['issue']; ?></p>
+            <p><strong>serial:</strong> <?php echo $row['serial']; ?></p>
+            <button onclick="button('updater',<?php echo $row['issue_id'];?>)">update</button>
+            <button onclick="button('deleter',<?php echo $row['issue_id'];?>)">delete</button>
+        </div>
+               
+            <?php }
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+        
+       
+       
+    
+}
+?>
   
 </div>
     </body>

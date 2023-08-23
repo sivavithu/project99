@@ -4,7 +4,7 @@
 session_start();
 
 // Debugging: Check the session variables
-\
+
 
 // Check if user is authenticated and has the role of a student
 if(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student') {

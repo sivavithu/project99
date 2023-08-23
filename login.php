@@ -89,8 +89,9 @@
     $_SESSION['role'] = $row['role'];
     
     ob_end_clean(); // Clear the output buffer
-    header("location:/index.php");
-    exit;
+  echo '<script>window.location.href = "/index.php";</script>';
+exit;
+
 } 
 
                   

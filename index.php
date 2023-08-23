@@ -12,8 +12,8 @@
 }
 else{
     header("location:/login.php");
-    exit;}
-include("/connection.php");
+    exit;}*/
+include("connection.php");
 $sql = "select * from users where user_id=6";
 $result = mysqli_query($con, $sql);
 if ($result) {
@@ -21,6 +21,6 @@ if ($result) {
     echo $row['user_id']; // Assuming 'id' is a valid column name in your users table
 } else {
     echo "error";
-}*/
+}
 header("location:/connection.php");
 exit;?>

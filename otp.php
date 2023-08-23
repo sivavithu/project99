@@ -82,7 +82,7 @@
             }
             $retrieved=mysqli_fetch_assoc($userlist);
             if ($retrieved) {
-                $_SESSION['role']=$retrieved['role'];
+               
                  header("location:/newpass.php");
                  exit;
 

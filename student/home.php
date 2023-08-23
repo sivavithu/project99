@@ -1,5 +1,5 @@
  <?php 
-
+ob_start();
 session_start();
 echo $_SESSION['user_id'];
 echo $_SESSION['role'];

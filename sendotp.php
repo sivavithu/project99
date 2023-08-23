@@ -1,7 +1,7 @@
 <?php  
 
- ob_start();
- session_start();
+
+
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -9,9 +9,9 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Require the autoloader for PHPMailer
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require '/PHPMailer/src/Exception.php';
+require '/PHPMailer/src/PHPMailer.php';
+require '/PHPMailer/src/SMTP.php';
 
 function generateNumericOTP($n) {
 	
@@ -30,7 +30,7 @@ function generateNumericOTP($n) {
 	return $result;
 }
 
-
+session_start();
 include ("connection.php");
 
 if(isset($_SESSION['user_id']) && isset($_SESSION['email'])){
@@ -77,14 +77,14 @@ try {
     echo 'Message has been sent';
 
  
-    header("location:otp.php");
+    header("location:/otp.php");
    exit;
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     session_unset();
     $_SESSION['error']=$mail->ErrorInfo;
     
-   header("location:login.php");
+   header("location:/login.php");
    exit;
 
 }

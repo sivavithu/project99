@@ -136,7 +136,7 @@
     </body>
     <?php }
     else{
-       // header("location:../login.php");
-       //exit;
+        header("location:../login.php");
+       exit;
     } ?>
 </html>

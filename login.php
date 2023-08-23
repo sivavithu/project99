@@ -70,7 +70,7 @@
         }
     }
 
-    include "connection.php";
+    include "/connection.php";
     if (isset($_POST['login'])) {
         if ((isset($_POST['username']) && isset($_POST['password']))) {
             $username = $_POST['username'];

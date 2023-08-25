@@ -2,8 +2,7 @@
 <?php ob_start(); ?>
 <?php 
 
-
- session_start();
+session_start();
 $_SESSION['color']='red';
 echo $_SESSION['color'];
 echo "hi",$_SESSION['user_id'];

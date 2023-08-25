@@ -100,7 +100,7 @@
                
               $_SESSION['role'] = $row['role'];
                    header("location:/index.php");
-   
+                  exit;
                 ob_end_flush();
             }
             else{

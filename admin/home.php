@@ -5,6 +5,7 @@
 
 session_start();
 echo "hi",$_SESSION['user_id'];
+print_r($_SESSION);
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'admin')) {
      echo "sss";
      header("location:../login.php");

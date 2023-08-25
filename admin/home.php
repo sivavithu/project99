@@ -19,6 +19,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
 </head>
 
 <body>
+     <h1>hi admin</h1>
     <a href="manageusers.php"><button>manage users</button></a>
     
 </body>

@@ -95,6 +95,7 @@
                echo "cor";
             if($row['status']=='active'){
                 echo "act";
+                   ob_end_flush(); 
              $_SESSION['user_id'] = $row['user_id'];
                
               $_SESSION['role'] = $row['role'];
@@ -118,7 +119,7 @@
             echo "<script>showerr();</script>";
         }
 
-       ob_end_flush(); 
+    
     }
     
     }

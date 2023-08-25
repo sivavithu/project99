@@ -99,8 +99,7 @@
                
               $_SESSION['role'] = $row['role'];
                  
-              header("location:/index.php");
-               exit;
+              include("index.php");
             }
             else{
                 echo "<script>deactivatedmsg();</script>";

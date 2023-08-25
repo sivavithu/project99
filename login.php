@@ -1,6 +1,4 @@
-<?php
-ob_start();
-?>
+
 <!doctype html>
 <html lang="en">
 
@@ -15,7 +13,9 @@ ob_start();
             display: flex;
             justify-content: center;
         }
-
+      #error-message{
+     background-color:red;
+      }
       
     </style>
     
@@ -26,6 +26,9 @@ ob_start();
 
         function showerr() {
             document.getElementById("error-message").innerHTML="enter a valid username or password";
+        }
+        function deactivatedmsg(){
+            document.getElementById("error-message").innerHTML="your account has been disabled";
         }
     </script>
 </head>
@@ -65,7 +68,7 @@ ob_start();
     }
     if (isset($_SESSION['user_id'])) {
         if ($_SESSION['role'] == 'admin') {
-            header("location:/adminuser.php");
+            header("location:/admin/home.php");
             exit;
         } else {
             header("location:/student/home.php");
@@ -89,16 +92,15 @@ ob_start();
             $row = mysqli_fetch_assoc($result);
             echo "hi";
            if (password_verify($password, $row['password'])) {
+            if($row['status']=='active'){
              $_SESSION['user_id'] = $row['user_id'];
               $_SESSION['role'] = $row['role'];
-                if ($_SESSION['role'] == 'admin') {
-            header("location:/adminuser.php");
-            exit;
-        } else {
-            header("location:/student/home.php");
-            exit;
-        }
-               
+               header("location:/index.php");
+               exit;
+            }
+            else{
+                echo "<script>deactivatedmsg();</script>";
+            }
   
 
 

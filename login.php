@@ -99,8 +99,8 @@
              $_SESSION['user_id'] = $row['user_id'];
                
               $_SESSION['role'] = $row['role'];
-                   
-              include("index.php");
+                   header("location:/index.php");
+   
                 ob_end_flush();
             }
             else{

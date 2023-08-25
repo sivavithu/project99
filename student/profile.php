@@ -143,6 +143,19 @@ if (isset($_POST['upload'])) {
     max-width: 100%;
     max-height: 100%;
 }
+#profileImageHolder {
+    width: 150px; /* Adjust the width and height to your preference */
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto; /* Center the holder horizontally */
+}
+
+#profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
         </style>
         <script>
@@ -257,12 +270,14 @@ if (isset($_POST['upload'])) {
                         <h2> Welcome to department of computer science complaint register portal </h2>
                     </center>
                     <br><br>
-            <div class="propic">
-        <center>
-            <img id="profileImage" src="" alt="Profile Image" style="max-width: 300px;">
-        </center>
-       
-         </div>
+           <div class="propic">
+    <center>
+        <div id="profileImageHolder">
+            <img id="profileImage" src="" alt="Profile Image">
+        </div>
+    </center>
+</div>
+
                     <button id="openModal">Add/Change Picture</button>
                     <div class="item1">
                        <?php

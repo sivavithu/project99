@@ -118,7 +118,7 @@
             echo "<script>showerr();</script>";
         }
 
-        
+       ob_end_flush(); 
     }
     
     }

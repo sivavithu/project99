@@ -1,4 +1,12 @@
 <?php
+ob_start();
+session_start();
+
+
+if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+     header("location:../login.php");
+       exit;
+    
 include("../connection.php");
 require('actions.php');
 

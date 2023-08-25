@@ -96,9 +96,10 @@
             if($row['status']=='active'){
                 echo "act";
              $_SESSION['user_id'] = $row['user_id'];
+                echo $_SESSION['user_id'];
               $_SESSION['role'] = $row['role'];
-               header("location:/index.php");
-               exit;
+              // header("location:/index.php");
+              // exit;
             }
             else{
                 echo "<script>deactivatedmsg();</script>";

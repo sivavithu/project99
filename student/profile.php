@@ -4,14 +4,62 @@
 
 session_start();
 
-// Debugging: Check the session variables
-
-
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
      header("location:../login.php");
        exit;
-} ?>
+}
+$user=$_SESSION['user_id'];
+
+$user = $_SESSION['user_id'];
+
+
+session_start();
+
+if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+    header("location: ../login.php");
+    exit;
+}
+
+$user = $_SESSION['user_id'];
+
+if (isset($_POST['upload'])) {
+    $targetDirectory = "../images/"; // Directory where uploaded images will be stored
+    $userId = $user; // Replace this with the actual user ID
+
+    // Define allowed image file extensions
+    $allowedExtensions = array("jpg", "jpeg", "png");
+
+    // Get the uploaded file's extension
+    $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+
+    // Check if the uploaded file has a valid extension
+    if (in_array($fileExtension, $allowedExtensions)) {
+        // Create the target file path with the user's ID as the filename
+        $targetFile = $targetDirectory . $userId;
+
+        // Delete the existing file if it exists
+        if (file_exists($targetFile)) {
+            unlink($targetFile);
+        }
+
+        // Move the uploaded file to the target location
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile . "." . $fileExtension)) {
+            echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded and replaced as " . $userId;
+        } else {
+            echo "Error uploading the file.";
+        }
+    } else {
+        echo "Only JPG, JPEG, and PNG files are allowed.";
+    }
+}
+?>
+
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,26 +68,92 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
         <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-        <script>
-            $(document).ready(function(){
-                $(".hamburger .hamburger__inner").click(function(){
-                $(".wrapper").toggleClass("active")
-                })
+        <script src="script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0"> </script>
 
-                $(".top_navbar .fas").click(function(){
-                $(".profile_dd").toggleClass("active");
-                });
-            })
-            if(window.history.replaceState){
-    window.history.replaceState(null,null,window.location.href);}
-
-
-    
- 
-        </script>
+     
 
         <title>CMS</title>
+      
+        <style>
+            .modal {
+    display: none; 
+
+}
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+      
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto; /* Center the modal horizontally */
+            margin-top: 10%; /* Adjust as needed */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px; /* Limit the width of the modal */
+            position: relative;
+        }
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px; /* Increase the font size */
+    cursor: pointer;
+}
+
+        </style>
+        <script>
+    // JavaScript code to update the <img> element's src attribute
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the user ID from PHP
+        var userId = <?php echo json_encode($user); ?>;
+        var profileImage = document.getElementById("profileImage");
+
+        // Array of possible image extensions
+        var possibleExtensions = ["jpeg", "png", "jpg"];
+
+        // Find the first valid image extension
+        var validExtension = possibleExtensions.find(function(ext) {
+            var imageUrl = "../images/" + userId + "." + ext;
+            var image = new Image();
+            image.src = imageUrl;
+            return image.width > 0;
+        });
+
+        // Set the src attribute of the <img> element
+        if (validExtension) {
+            profileImage.src = "../images/" + userId + "." + validExtension;
+        } else {
+            // Display a placeholder image or default image
+            profileImage.src = "../images/computer.png";
+        }
+    });
+</script>
+
+
+
         <link rel="icon" href="f.png" sizes="120x120" type="image/png">
 
     </head>
@@ -122,22 +236,25 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                         <h2> Welcome to department of computer science complaint register portal </h2>
                     </center>
                     <br><br>
-                        <div class="search">
-                    <form action="history.php" method="post">
-        <input type="text" name="key">
-         <input type="submit" name="search" value="search">
-    </form>
+            <div class="propic">
+        <center>
+            <img id="profileImage" src="" alt="Profile Image" style="max-width: 300px;">
+        </center>
+       
+         </div>
+                    <button id="openModal">Add/Change Picture</button>
                     <div class="item1">
                        <?php
                        include ("../connection.php");
-                       $user=$_SESSION['user_id'];
                        $sql = "SELECT * FROM users WHERE user_id='$user'";
                        $result = mysqli_query($con, $sql);
 
                        if ($result) {
                            while ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                        
+                     
+                
+
                      <div class='profile'>
                         
                         <p><strong>username:</strong> <?php echo $row['user_name']; ?></p>
@@ -160,6 +277,16 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             </div>
         
         </div>	
-
+        <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload Image</h2>
+            <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
+                <label for="image">Select an image to upload:</label>
+                <input type="file" name="image" id="image">
+                <input type="submit" name="upload" value="Upload">
+            </form>
+        </div>
+    </div>
     </body>
 </html>

@@ -11,6 +11,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
      header("location:../login.php");
        exit;
 }
+     echo "hello";
 ?>
 <!DOCTYPE html>
 <html lang="en">

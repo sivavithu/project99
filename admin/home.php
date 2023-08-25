@@ -3,7 +3,7 @@
 <?php 
 
 
-session_start();
+//session_start();
 echo "hi",$_SESSION['user_id'];
 print_r($_SESSION);
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'admin')) {

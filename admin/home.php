@@ -4,6 +4,8 @@
 
 
  session_start();
+$_SESSION['color']='red';
+echo $_SESSION['color'];
 echo "hi",$_SESSION['user_id'];
 print_r($_SESSION);
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'admin')) {

@@ -1,7 +1,8 @@
 
 <?php ob_start(); ?>
 <?php 
-
+error_reporting(E_ALL); // Report all types of errors
+ini_set('display_errors', 1); // Display errors on the screen
 session_start();
 $_SESSION['color']='red';
 echo $_SESSION['color'];

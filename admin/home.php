@@ -6,6 +6,7 @@ session_start();
 
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+     echo "sss";
      header("location:../login.php");
        exit;
 }

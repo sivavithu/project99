@@ -1,17 +1,16 @@
 
+<?php ob_start(); ?>
 <?php 
 
-ob_start();
+
 session_start();
 
-echo vardump($_SESSION)."hi";
-print_r ($_SESSION);
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'admin')) {
-     echo "sss";
      header("location:../login.php");
        exit;
 }
-     echo "hello";
+
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

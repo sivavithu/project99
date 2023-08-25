@@ -39,8 +39,12 @@ if (isset($_POST['upload'])) {
         $targetFile = $targetDirectory . $userId;
 
         // Delete the existing file if it exists
-        if (file_exists($targetFile)) {
-            unlink($targetFile);
+        if (file_exists($targetFile . ".jpg")) {
+            unlink($targetFile . ".jpg");
+        }
+        
+        if (file_exists($targetFile . ".jpeg")) {
+            unlink($targetFile . ".jpeg");
         }
 
         // Move the uploaded file to the target location
@@ -50,9 +54,10 @@ if (isset($_POST['upload'])) {
             echo "Error uploading the file.";
         }
     } else {
-        echo "Only JPG, JPEG, and PNG files are allowed.";
+        echo "Only JPG and JPEG files are allowed.";
     }
 }
+
 ?>
 
 

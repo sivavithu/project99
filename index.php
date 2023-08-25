@@ -6,7 +6,7 @@
             header("location:/admin/home.php");
             exit;}
     
-    else {
+    else if($_SESSION['role']=='student') {
         header("location:/student/home.php");
         exit;
     }

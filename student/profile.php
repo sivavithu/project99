@@ -28,7 +28,7 @@ if (isset($_POST['upload'])) {
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions
-    $allowedExtensions = array("jpg", "jpeg", "png");
+    $allowedExtensions = array("jpg", "jpeg");
 
     // Get the uploaded file's extension
     $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
@@ -122,6 +122,22 @@ if (isset($_POST['upload'])) {
     font-size: 24px; /* Increase the font size */
     cursor: pointer;
 }
+.profile-picture {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.profile-picture img {
+    max-width: 100%;
+    max-height: 100%;
+}
 
         </style>
         <script>
@@ -132,7 +148,7 @@ if (isset($_POST['upload'])) {
         var profileImage = document.getElementById("profileImage");
 
         // Array of possible image extensions
-        var possibleExtensions = ["jpeg", "png", "jpg"];
+        var possibleExtensions = ["jpeg","jpg"];
 
         // Find the first valid image extension
         var validExtension = possibleExtensions.find(function(ext) {
@@ -282,7 +298,7 @@ if (isset($_POST['upload'])) {
             <span class="close">&times;</span>
             <h2>Upload Image</h2>
             <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
-                <label for="image">Select an image to upload:</label>
+                <label for="image">Select an image to upload(jpg,jpeg):</label>
                 <input type="file" name="image" id="image">
                 <input type="submit" name="upload" value="Upload">
             </form>

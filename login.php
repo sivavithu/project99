@@ -98,9 +98,9 @@
              $_SESSION['user_id'] = $row['user_id'];
                
               $_SESSION['role'] = $row['role'];
-                 echo $_SESSION['role'];
-              // header("location:/index.php");
-              // exit;
+                 
+              header("location:/index.php");
+               exit;
             }
             else{
                 echo "<script>deactivatedmsg();</script>";

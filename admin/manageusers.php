@@ -1,10 +1,10 @@
 <?php 
 ob_start();
 session_start();
-/*if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'admin')) {
+if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'admin')) {
     header("location:../login.php");
     exit;
-}*/
+}
 include("../connection.php");
 require 'actions.php';
 $sqlAdmins = "SELECT user_name, name, email, status FROM users WHERE role = 'admin'";
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
 
     if ($deleteResult) {
       
-        header("location: manageusers.php");
+        header("location:manageusers.php");
         exit;
     } else {
         echo mysqli_error($con);

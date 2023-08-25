@@ -96,8 +96,9 @@
             if($row['status']=='active'){
                 echo "act";
              $_SESSION['user_id'] = $row['user_id'];
-                echo $_SESSION['user_id'];
+               
               $_SESSION['role'] = $row['role'];
+                 echo $_SESSION['role'];
               // header("location:/index.php");
               // exit;
             }

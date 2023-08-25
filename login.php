@@ -99,8 +99,9 @@
              $_SESSION['user_id'] = $row['user_id'];
                
               $_SESSION['role'] = $row['role'];
-                   ob_end_flush();
+                   
               include("index.php");
+                ob_end_flush();
             }
             else{
                 echo "<script>deactivatedmsg();</script>";

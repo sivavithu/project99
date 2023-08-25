@@ -92,7 +92,9 @@
             $row = mysqli_fetch_assoc($result);
             echo "hi";
            if (password_verify($password, $row['password'])) {
+               echo "cor";
             if($row['status']=='active'){
+                echo "act";
              $_SESSION['user_id'] = $row['user_id'];
               $_SESSION['role'] = $row['role'];
                header("location:/index.php");

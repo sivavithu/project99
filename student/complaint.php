@@ -176,15 +176,24 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
        ?>
 
         <div class="wrapper">
-            <div class="top_navbar">
-                <div class="hamburger">
-                    <div class="hamburger__inner">
-                        <div class="one"></div>
-                        <div class="two"></div>
-                        <div class="three"></div>
-                    </div>
-                </div>
-                <div class="menu">
+           <div class="top_navbar">
+    <div class="hamburger">
+        <div class="hamburger__inner">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+    </div>
+    <div class="profile">
+        <div class="img">
+            <div id="profile2"></div>
+        </div>
+        <div class="profile_info">
+            <p>Welcome</p>
+            <p class="profile_name">User</p>
+        </div>
+    </div>
+    <div class="menu">
                     <div class="logo">
                         HOME
                     </div>
@@ -203,9 +212,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             <div class="main_container">
                 <div class="sidebar">
                     <div class="sidebar__inner">
-                        <div class="profile">
-                           <div class="img">
-                            <div id="profile2"></div>
+                       </div>
                             
                             <div class="profile_info">
                                 <p>Welcome</p>

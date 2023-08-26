@@ -9,7 +9,7 @@ session_start();
 
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-     header("location:../login.php");
+  header("location:../login.php");
        exit;
 }
 $user=$_SESSION['user_id'];
@@ -35,9 +35,9 @@ $user=$_SESSION['user_id'];
             })
             if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
-                 
+  
    document.addEventListener("DOMContentLoaded", function() {
-
+ 
   const profileElementx = document.getElementById("profile2");
   const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
   const imageExtensions = ["jpg", "jpeg"];
@@ -56,18 +56,14 @@ $user=$_SESSION['user_id'];
 
     img.onload = function() {
       // Set the background image and adjust background size
-     
+ 
       profileElementx.style.backgroundImage = `url(${imageURL})`;
-      profileElementx.style.backgroundSize = "50px 50px";// Set dimensions here
+      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
     };
   }
 });
-
-
-    
-
-        </script>
-             <style>#profile2 {
+</script>
+<style>#profile2 {
 	border: 1px solid black;
 	height: 60px;
 	width: 60px;
@@ -77,9 +73,10 @@ $user=$_SESSION['user_id'];
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
-}</style>
-
+	background-image: url("../images/person.png"); /* Set the default background image */
+}
+</style>
+   
         <title>CMS</title>
         <link rel="icon" href="f.png" sizes="120x120" type="image/png">
 
@@ -115,9 +112,10 @@ $user=$_SESSION['user_id'];
                 <div class="sidebar">
                     <div class="sidebar__inner">
                         <div class="profile">
-                           <div class="img">
+                            <div class="img">
                             <div id="profile2"></div>
-                            
+                            </div>
+                            <div class="profile_info">
                                 <p>Welcome</p>
                                 <p class="profile_name">User</p>
                             </div>
@@ -161,11 +159,7 @@ $user=$_SESSION['user_id'];
                         <h2> Welcome to department of computer science complaint register portal </h2>
                     </center>
                     <br><br>
-                        <div class="search">
-                    <form action="history.php" method="post">
-        <input type="text" name="key">
-         <input type="submit" name="search" value="search">
-    </form></div>
+                        
                     <div class="item1">
                         At the Department of Computer Science, University of Jaffna,
                         we are dedicated to maintaining an environment of academic excellence 

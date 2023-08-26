@@ -56,6 +56,36 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
         document.body.appendChild(form);
         form.submit();
     }
+         
+   document.addEventListener("DOMContentLoaded", function() {
+
+  const profileElementx = document.getElementById("profile2");
+  const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
+  const imageExtensions = ["jpg", "jpeg"];
+  const imagesFolderPath = "../imagestore/";
+
+  // Check User ID
+  console.log("User ID:", userID);
+
+  // Try loading images with different extensions
+  for (const extension of imageExtensions) {
+    const imageURL = `${imagesFolderPath}${userID}.${extension}`;
+    console.log("Trying image URL:", imageURL);
+
+    const img = new Image();
+    img.src = imageURL;
+
+    img.onload = function() {
+      // Set the background image and adjust background size
+     
+      profileElementx.style.backgroundImage = `url(${imageURL})`;
+      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
+    };
+  }
+});
+
+
+    
         </script>
         <style>
               .history {
@@ -64,8 +94,21 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             padding: 8px;
             margin: 20px;
             text-align: left;
+                   
         }
-        </style>
+                 #profile2 {
+	border: 1px solid black;
+	height: 60px;
+	width: 60px;
+	margin: 10px;
+	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
+	box-shadow: 2px 3px 10px black;
+	background-color: white; /* Set a background color */
+	background-size: 100%; /* Adjust the background size to make the image smaller */
+	background-position: center; /* Center the background image */
+	background-image: url("../images/person.png"); /* Set the default background image */
+}</style>
+       
 
         <title>CMS</title>
         <link rel="icon" href="f.png" sizes="120x120" type="image/png">
@@ -123,8 +166,8 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                                <img src="https://p7.hiclipart.com/preview/922/81/315/stock-photography-computer-icons-user-3d-character-icon-vector-material.jpg" alt="profile_pic">
-                            </div>
+                            <div id="profile2"></div>
+                            
                             <div class="profile_info">
                                 <p>Welcome</p>
                                 <p class="profile_name">User</p>

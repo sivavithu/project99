@@ -12,7 +12,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
      header("location:../login.php");
        exit;
 }
-
+$user=$_SESSION['user_id'];
  
 ?>
 <!DOCTYPE html>

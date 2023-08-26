@@ -14,7 +14,7 @@ $user=$_SESSION['user_id'];
 
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../images/"; // Directory where uploaded images will be stored
+    $targetDirectory = "../imagestore/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions
@@ -78,7 +78,7 @@ if (isset($_POST['upload'])) {
   const profileElementx = document.getElementById("profile2");
   const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
   const imageExtensions = ["jpg", "jpeg"];
-  const imagesFolderPath = "../images/";
+  const imagesFolderPath = "../imagestore/";
 
   // Check User ID
   console.log("User ID:", userID);

@@ -83,7 +83,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	background-image: url("../imagestore/person.png"); /* Set the default background image */
 }
         </style>
 

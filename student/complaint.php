@@ -11,8 +11,7 @@ session_start();
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
      header("location:../login.php");
        exit;
-}
-	$user=$_SESSION['user_id'];?>
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +83,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
+	background-image: url("../images/person.png"); /* Set the default background image */
 }
         </style>
 
@@ -176,24 +175,15 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
        ?>
 
         <div class="wrapper">
-           <div class="top_navbar">
-    <div class="hamburger">
-        <div class="hamburger__inner">
-            <div class="one"></div>
-            <div class="two"></div>
-            <div class="three"></div>
-        </div>
-    </div>
-    <div class="profile">
-        <div class="img">
-            <div id="profile2"></div>
-        </div>
-        <div class="profile_info">
-            <p>Welcome</p>
-            <p class="profile_name">User</p>
-        </div>
-    </div>
-    <div class="menu">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <div class="hamburger__inner">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                    </div>
+                </div>
+                <div class="menu">
                     <div class="logo">
                         HOME
                     </div>
@@ -212,7 +202,9 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             <div class="main_container">
                 <div class="sidebar">
                     <div class="sidebar__inner">
-                       </div>
+                        <div class="profile">
+                           <div class="img">
+                            <div id="profile2"></div>
                             
                             <div class="profile_info">
                                 <p>Welcome</p>

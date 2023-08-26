@@ -165,7 +165,7 @@ $user=$_SESSION['user_id'];
                     <form action="history.php" method="post">
         <input type="text" name="key">
          <input type="submit" name="search" value="search">
-    </form>
+    </form></div>
                     <div class="item1">
                         At the Department of Computer Science, University of Jaffna,
                         we are dedicated to maintaining an environment of academic excellence 

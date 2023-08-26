@@ -14,7 +14,7 @@ $user=$_SESSION['user_id'];
 
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../imagestore/"; // Directory where uploaded images will be stored
+    $targetDirectory = "../images/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions
@@ -159,7 +159,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
+	background-image: url("../images/person.png"); /* Set the default background image */
 }
 #profile2 {
 	border: 1px solid black;
@@ -171,8 +171,66 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
+	background-image: url("../images/person.png"); /* Set the default background image */
 }
+.item1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px; /* Limit the width of the container */
+  margin: 0 auto; /* Center the container on the page */
+  padding: 20px; /* Add some padding */
+}
+
+.item1 .profile {
+  background-color: #f5f5f5;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; /* Add some rounded corners */
+}
+
+.item1 .profile p {
+  margin: 5px 0;
+}
+
+/* Style for alternating profiles */
+.item1 .profile:nth-child(odd) {
+  background-color: #fff;
+}
+#openModal {
+  margin-top: 10px;
+  margin-bottom:20px;
+  padding: 5px 10px; /* Adjust padding to make the button smaller */
+  background-color: #003996;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px; /* Adjust font size to make the text smaller */
+}
+
+#openModal:hover {
+  background-color: #002678;
+}
+
+.center-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 
 
         </style>
@@ -269,8 +327,8 @@ if (isset($_POST['upload'])) {
         <div id="profile1"></div>
     </center>
 
-
-                    <button id="openModal">Add/Change Picture</button>
+<center>
+                    <button id="openModal">Add/Change Picture</button></center>
                     <div class="item1">
                        <?php
                        include ("../connection.php");

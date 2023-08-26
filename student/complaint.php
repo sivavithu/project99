@@ -74,7 +74,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             margin: 20px;
             text-align: left;
         }
-                 <style>#profile2 {
+                 #profile2 {
 	border: 1px solid black;
 	height: 60px;
 	width: 60px;

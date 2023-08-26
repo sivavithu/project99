@@ -11,17 +11,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
 }
 $user=$_SESSION['user_id'];
 
-$user = $_SESSION['user_id'];
 
-
-session_start();
-
-if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-    header("location: ../login.php");
-    exit;
-}
-
-$user = $_SESSION['user_id'];
 
 if (isset($_POST['upload'])) {
     $targetDirectory = "../images/"; // Directory where uploaded images will be stored
@@ -73,7 +63,8 @@ if (isset($_POST['upload'])) {
         <link rel="stylesheet" href="style.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        
+        <script src="path/to/idb.filesystem.js"></script>
+
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
         <script src="script.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0"> </script>
@@ -81,7 +72,36 @@ if (isset($_POST['upload'])) {
      
 
         <title>CMS</title>
-      
+        <script>
+   document.addEventListener("DOMContentLoaded", function() {
+  const profileElement = document.getElementById("profile1");
+  const profileElementx = document.getElementById("profile2");
+  const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
+  const imageExtensions = ["jpg", "jpeg"];
+  const imagesFolderPath = "../images/";
+
+  // Check User ID
+  console.log("User ID:", userID);
+
+  // Try loading images with different extensions
+  for (const extension of imageExtensions) {
+    const imageURL = `${imagesFolderPath}${userID}.${extension}`;
+    console.log("Trying image URL:", imageURL);
+
+    const img = new Image();
+    img.src = imageURL;
+
+    img.onload = function() {
+      // Set the background image and adjust background size
+      profileElement.style.backgroundImage = `url(${imageURL})`;
+      profileElement.style.backgroundSize = "200px 200px";
+      profileElementx.style.backgroundImage = `url(${imageURL})`;
+      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
+    };
+  }
+});
+</script>
+
         <style>
             .modal {
     display: none; 
@@ -127,64 +147,38 @@ if (isset($_POST['upload'])) {
     font-size: 24px; /* Increase the font size */
     cursor: pointer;
 }
-.profile-picture {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 300px;
-    height: 300px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
+
+
+#profile1 {
+	border: 1px solid black;
+	height: 200px;
+	width: 200px;
+	margin: 10px;
+	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
+	box-shadow: 2px 3px 10px black;
+	background-color: white; /* Set a background color */
+	background-size: 100%; /* Adjust the background size to make the image smaller */
+	background-position: center; /* Center the background image */
+	background-image: url("../images/person.png"); /* Set the default background image */
+}
+#profile2 {
+	border: 1px solid black;
+	height: 60px;
+	width: 60px;
+	margin: 10px;
+	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
+	box-shadow: 2px 3px 10px black;
+	background-color: white; /* Set a background color */
+	background-size: 100%; /* Adjust the background size to make the image smaller */
+	background-position: center; /* Center the background image */
+	background-image: url("../images/person.png"); /* Set the default background image */
 }
 
-.profile-picture img {
-    max-width: 100%;
-    max-height: 100%;
-}
-#profileImageHolder {
-    width: 150px; /* Adjust the width and height to your preference */
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto; /* Center the holder horizontally */
-}
-
-#profileImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
         </style>
-        <script>
-    // JavaScript code to update the <img> element's src attribute
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the user ID from PHP
-        var userId = <?php echo json_encode($user); ?>;
-        var profileImage = document.getElementById("profileImage");
+     
 
-        // Array of possible image extensions
-        var possibleExtensions = ["jpeg","jpg"];
 
-        // Find the first valid image extension
-        var validExtension = possibleExtensions.find(function(ext) {
-            var imageUrl = "../images/" + userId + "." + ext;
-            var image = new Image();
-            image.src = imageUrl;
-            return image.width > 0;
-        });
-
-        // Set the src attribute of the <img> element
-        if (validExtension) {
-            profileImage.src = "../images/" + userId + "." + validExtension;
-        } else {
-            // Display a placeholder image or default image
-            profileImage.src = "../images/computer.png";
-        }
-    });
-</script>
 
 
 
@@ -224,7 +218,7 @@ if (isset($_POST['upload'])) {
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                                <img src="https://p7.hiclipart.com/preview/922/81/315/stock-photography-computer-icons-user-3d-character-icon-vector-material.jpg" alt="profile_pic">
+                            <div id="profile2"></div>
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
@@ -270,13 +264,11 @@ if (isset($_POST['upload'])) {
                         <h2> Welcome to department of computer science complaint register portal </h2>
                     </center>
                     <br><br>
-           <div class="propic">
+           
     <center>
-        <div id="profileImageHolder">
-            <img id="profileImage" src="" alt="Profile Image">
-        </div>
+        <div id="profile1"></div>
     </center>
-</div>
+
 
                     <button id="openModal">Add/Change Picture</button>
                     <div class="item1">

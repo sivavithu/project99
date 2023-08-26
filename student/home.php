@@ -58,7 +58,7 @@ $user=$_SESSION['user_id'];
       // Set the background image and adjust background size
      
       profileElementx.style.backgroundImage = `url(${imageURL})`;
-      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
+      profileElementx.style.backgroundSize = "50px 50px";// Set dimensions here
     };
   }
 });

@@ -159,7 +159,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	background-image: url("../imagestore/person.png"); /* Set the default background image */
 }
 #profile2 {
 	border: 1px solid black;
@@ -171,7 +171,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	background-image: url("../imagestore/person.png"); /* Set the default background image */
 }
 
 

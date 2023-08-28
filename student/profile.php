@@ -7,9 +7,9 @@ session_start();
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
   header("location:../login.php");
-      exit;
+       exit;
 }
-$user=$_SESSION['user_id];
+$user=$_SESSION['user_id'];
 
 
 
@@ -46,6 +46,7 @@ if (isset($_POST['upload'])) {
     } else {
         echo "Only JPG and JPEG files are allowed.";
     }
+}
 
 ?>
 
@@ -71,37 +72,40 @@ if (isset($_POST['upload'])) {
      
 
         <title>CMS</title>
-        <script>
+ <!-- ... (previous code) ... -->
+
+<script>
   document.addEventListener("DOMContentLoaded", function() {
-  const profileElement = document.getElementById("profile1");
-  const profileElementx = document.getElementById("profile2");
-  const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
-  const imageExtensions = ["jpg", "jpeg"];
-  const imagesFolderPath = "../profileimages/";
+    const profileElement = document.getElementById("profile1");
+    const profileElementx = document.getElementById("profile2");
+    const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
+    const imageExtensions = ["jpg", "jpeg"];
+    const imagesFolderPath = "../profileimages/";
 
-  // Check User ID
-  console.log("User ID:", userID);
+    // Check User ID
+    console.log("User ID:", userID);
 
-  // Try loading images with different extensions
-  for (const extension of imageExtensions) {
-    const imageURL = `${imagesFolderPath}${userID}.${extension}`;
-    console.log("Trying image URL:", imageURL);
+    // Try loading images with different extensions
+    for (const extension of imageExtensions) {
+      const imageURL = `${imagesFolderPath}${userID}.${extension}`;
+      console.log("Trying image URL:", imageURL);
 
-    const img = new Image();
-    img.src = imageURL;
+      const img = new Image();
+      img.src = imageURL;
 
-    img.onload = function() {
-      // Set the background image and adjust background size
-      profileElement.style.backgroundImage = `url(${imageURL})`;
-      profileElement.style.backgroundSize = "200px 200px";
-      profileElementx.style.backgroundImage = `url(${imageURL})`;
-      profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-    };
-  }
-});
-
-  
+      img.onload = function() {
+        // Set the background image and adjust background size
+        profileElement.style.backgroundImage = `url(${imageURL})`;
+        profileElement.style.backgroundSize = "200px 200px";
+        profileElementx.style.backgroundImage = `url(${imageURL})`;
+        profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+      };
+    }
+  });
 </script>
+
+<!-- ... (remaining code) ... -->
+
 
         <style>
             .modal {

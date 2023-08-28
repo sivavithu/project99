@@ -49,7 +49,7 @@
             header("location:/sendotp.php");
             exit;
         } else {
-            $emailerr = true;
+            echo "<script>showerr();</script>"
         }
     }
 }
@@ -105,7 +105,7 @@ function showerr(){
 function displayform1(){?>
 <div class="emailchecker">
    <form action="/otp.php" method="post">
-      <span>email:</span><input required type="text" name="email"><span><?php if(isset($message)){showerr();}?></span><br>
+      <span>email:</span><input required type="text" name="email"><span id="err"></span><br>
       <input type="submit" name="submit" value="submit">
    </form>
    </div>
@@ -137,8 +137,15 @@ function displayform1(){?>
         }
         
 
-    // Set a timeout to call the function after 5 minutes (300,000 milliseconds)
+ 
          setTimeout(sendOtp, 300000);
+        
+         function showerr(){
+           var err=document.getElementById("err");
+           err.innerHTML="Email doesn't match any account";
+           err.style.backgroundColor="red";
+
+         }
     </script>
     </script>
 

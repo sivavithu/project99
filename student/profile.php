@@ -6,7 +6,7 @@ session_start();
 
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-     header("location:../login.php");
+  header("location:../login.php");
        exit;
 }
 $user=$_SESSION['user_id'];
@@ -14,7 +14,7 @@ $user=$_SESSION['user_id'];
 
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../imagestore/"; // Directory where uploaded images will be stored
+    $targetDirectory = "../images/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions
@@ -147,7 +147,25 @@ if (isset($_POST['upload'])) {
     font-size: 24px; /* Increase the font size */
     cursor: pointer;
 }
+.center-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
 
+        #openModal {
+            padding: 5px 10px;
+            background-color: #003996;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        #openModal:hover {
+            background-color: #002678;
+        }
 
 #profile1 {
 	border: 1px solid black;

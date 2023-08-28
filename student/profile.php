@@ -7,14 +7,14 @@ session_start();
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
   header("location:../login.php");
-       exit;
+      exit;
 }
-$user=$_SESSION['user_id'];
+$user=$_SESSION['user_id];
 
 
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../imagestore/"; // Directory where uploaded images will be stored
+    $targetDirectory = "../profileimages/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions
@@ -73,12 +73,12 @@ if (isset($_POST['upload'])) {
 
         <title>CMS</title>
         <script>
-   document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
   const profileElement = document.getElementById("profile1");
   const profileElementx = document.getElementById("profile2");
   const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
   const imageExtensions = ["jpg", "jpeg"];
-  const imagesFolderPath = "../imagestore/";
+  const imagesFolderPath = "../profileimages/";
 
   // Check User ID
   console.log("User ID:", userID);
@@ -96,10 +96,12 @@ if (isset($_POST['upload'])) {
       profileElement.style.backgroundImage = `url(${imageURL})`;
       profileElement.style.backgroundSize = "200px 200px";
       profileElementx.style.backgroundImage = `url(${imageURL})`;
-      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
+      profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
     };
   }
 });
+
+  
 </script>
 
         <style>
@@ -167,7 +169,7 @@ if (isset($_POST['upload'])) {
             background-color: #002678;
         }
 
-#profile1 {
+        #profile1 {
 	border: 1px solid black;
 	height: 200px;
 	width: 200px;
@@ -177,7 +179,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
+	background-image: url("../profileimages/person.png"); /* Set the default background image */
 }
 #profile2 {
 	border: 1px solid black;
@@ -189,7 +191,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
+	background-image: url("../profileimages/person.png"); /* Set the default background image */
 }
 .item1 {
   display: flex;

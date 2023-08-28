@@ -46,7 +46,6 @@ if (isset($_POST['upload'])) {
     } else {
         echo "Only JPG and JPEG files are allowed.";
     }
-}
 
 ?>
 

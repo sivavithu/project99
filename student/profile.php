@@ -14,7 +14,7 @@ $user=$_SESSION['user_id'];
 
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../images/"; // Directory where uploaded images will be stored
+    $targetDirectory = "../imagestore/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions
@@ -177,7 +177,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	background-image: url("../imagestore/person.png"); /* Set the default background image */
 }
 #profile2 {
 	border: 1px solid black;
@@ -189,7 +189,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	background-image: url("../imagestore/person.png"); /* Set the default background image */
 }
 .item1 {
   display: flex;

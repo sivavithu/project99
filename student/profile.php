@@ -14,7 +14,7 @@ $user=$_SESSION['user_id'];
 
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../images/"; // Directory where uploaded images will be stored
+    $targetDirectory = "../imagestore/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
 
     // Define allowed image file extensions

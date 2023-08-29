@@ -11,7 +11,17 @@ session_start();
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
      header("location:../login.php");
        exit;
-} ?>
+} 
+     include("../connection.php");
+$query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
+$result = mysqli_query($con, $query);
+
+$imagePath = "../profileimages/person.png"; 
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $imagePath = $row['path'];
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,6 +65,16 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
         form.appendChild(input);
         document.body.appendChild(form);
         form.submit();
+       document.addEventListener("DOMContentLoaded", function() {
+            
+            const profileElementx = document.getElementById("profile2");
+            const imagePath = "<?php echo $imagePath; ?>"; 
+            
+
+        
+            profileElementx.style.backgroundImage = `url(${imagePath})`;
+            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+        });
     }
         </script>
         <style>

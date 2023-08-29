@@ -122,8 +122,8 @@
                
               $_SESSION['role'] = $row['role'];
                    header("location:/index.php");
-                
-                ob_end_flush();
+                   exit;
+            
             }
             else{
                 echo "<script>deactivatedmsg();</script>";

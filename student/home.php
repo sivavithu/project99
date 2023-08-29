@@ -13,8 +13,22 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
        exit;
 }
 $user=$_SESSION['user_id'];
- 
+
+$query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
+$result = mysqli_query($con, $query);
+
+$imagePath = "../profileimages/person.png"; 
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $imagePath = $row['path'];
+}
+
 ?>
+
+
+ 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

@@ -12,10 +12,43 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
 $user=$_SESSION['user_id'];
 
 
+
+if (isset($_POST['upload'])) {
+    $targetDirectory = "../profileimages/"; // Directory where uploaded images will be stored
+    $userId = $user; // Replace this with the actual user ID
+
+    // Define allowed image file extensions
+    $allowedExtensions = array("jpg", "jpeg");
+
+    // Get the uploaded file's extension
+    $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
+
+    // Check if the uploaded file has a valid extension
+    if (in_array($fileExtension, $allowedExtensions)) {
+        // Create the target file path with the user's ID as the filename
+        $targetFile = $targetDirectory . $userId;
+
+        // Delete the existing file if it exists
+        if (file_exists($targetFile . ".jpg")) {
+            unlink($targetFile . ".jpg");
+        }
+        
+        if (file_exists($targetFile . ".jpeg")) {
+            unlink($targetFile . ".jpeg");
+        }
+
+        // Move the uploaded file to the target location
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile . "." . $fileExtension)) {
+            echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded and replaced as " . $userId;
+        } else {
+            echo "Error uploading the file.";
+        }
+    } else {
+        echo "Only JPG and JPEG files are allowed.";
+    }
+}
+
 ?>
-
-
-
 
 
 
@@ -39,9 +72,40 @@ $user=$_SESSION['user_id'];
      
 
         <title>CMS</title>
+ <!-- ... (previous code) ... -->
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const profileElement = document.getElementById("profile1");
+    const profileElementx = document.getElementById("profile2");
+    const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
+    const imageExtensions = ["jpg", "jpeg"];
+    const imagesFolderPath = "../profileimages/";
 
-        
+    // Check User ID
+    console.log("User ID:", userID);
+
+    // Try loading images with different extensions
+    for (const extension of imageExtensions) {
+      const imageURL = `${imagesFolderPath}${userID}.${extension}`;
+      console.log("Trying image URL:", imageURL);
+
+      const img = new Image();
+      img.src = imageURL;
+
+      img.onload = function() {
+        // Set the background image and adjust background size
+        profileElement.style.backgroundImage = `url(${imageURL})`;
+        profileElement.style.backgroundSize = "200px 200px";
+        profileElementx.style.backgroundImage = `url(${imageURL})`;
+        profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+      };
+    }
+  });
+</script>
+
+<!-- ... (remaining code) ... -->
+
 
         <style>
             .modal {
@@ -118,7 +182,7 @@ $user=$_SESSION['user_id'];
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	
+	background-image: url("../profileimages/person.png"); /* Set the default background image */
 }
 #profile2 {
 	border: 1px solid black;
@@ -130,7 +194,7 @@ $user=$_SESSION['user_id'];
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	
+	background-image: url("../profileimages/person.png"); /* Set the default background image */
 }
 .item1 {
   display: flex;
@@ -203,97 +267,7 @@ $user=$_SESSION['user_id'];
 
     </head>
     <body>
-    <?php 
-
-
-
-
-
-
-include("../connection.php");
-
-if (isset($_POST['upload'])) {
-    $targetDirectory = "../profileimages/"; 
-    $allowedExtensions = array("jpg", "jpeg");
-    $maxFileSize = 2 * 1024 * 1024; // 2 MB
-
-    $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $imagePath = $targetDirectory . $_FILES["image"]["name"];
-
-    // Check if user ID exists
-    $query = "SELECT user_id FROM user_profiles WHERE user_id = '$user'";
-    $result = mysqli_query($con, $query);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $userIdExists = true;
-
-        // Delete the previous image if it exists
-        $currentImagePath = $row['path'];
-        if (file_exists($currentImagePath)) {
-            unlink($currentImagePath);
-        }
-    } else {
-        $userIdExists = false;
-    }
-
-    if (in_array($fileExtension, $allowedExtensions) && $_FILES["image"]["size"] <= $maxFileSize) {
-        if ($userIdExists) {
-           
-            $updateQuery = "UPDATE user_profiles SET path = '$imagePath' WHERE user_id = '$user'";
-            $updateResult = mysqli_query($con, $updateQuery);
-
-            if ($updateResult) {
-                echo "Image updated successfully.";
-            } else {
-                echo "Error updating image record: " . mysqli_error($con);
-            }
-        } else {
-            $insertQuery = "INSERT INTO user_profiles (user_id, path) VALUES ('$user', '$imagePath')";
-            $insertResult = mysqli_query($con, $insertQuery);
-
-            if ($insertResult) {
-                echo "Image uploaded and record inserted successfully.";
-            } else {
-                echo "Error inserting image record: " . mysqli_error($con);
-            }
-        }
-
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath)) {
-            echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded for user " . $user;
-        } else {
-            echo "Error uploading the file.";
-        }
-    } else {
-        echo "Only JPG and JPEG files up to 2MB are allowed.";
-    }
-}
-
-
-$query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
-$result = mysqli_query($con, $query);
-
-$imagePath = "../profileimages/person.png"; 
-
-if ($result && mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $imagePath = $row['path'];
-}
-
-?>
-<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const profileElement = document.getElementById("profile1");
-            const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>"; 
-            
-
-            profileElement.style.backgroundImage = `url(${imagePath})`;
-            profileElement.style.backgroundSize = "200px 200px";
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-        });
-    </script>
+ 
 
         <div class="wrapper">
             <div class="top_navbar">

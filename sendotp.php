@@ -79,14 +79,14 @@ try {
 
  
     header("location:/otp.php");
-   exit;
+     ob_end_flush();
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     session_unset();
     $_SESSION['error']=$mail->ErrorInfo;
     
    header("location:/login.php");
-   exit;
+   ob_end_flush();
 
 }
    

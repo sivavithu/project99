@@ -11,21 +11,7 @@ session_start();
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
      header("location:../login.php");
        exit;
-} 
-	$user=$_SESSION['user_id']; 
-
-$query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
-$result = mysqli_query($con, $query);
-
-$imagePath = "../profileimages/person.png"; 
-
-if ($result && mysqli_num_rows($result) > 0) {
-    $row = mysqli_fetch_assoc($result);
-    $imagePath = $row['path'];
-}
-
-?>
-
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +35,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
 
- 
+
     function button(str,issue_id){
         let location;
         if(str=="updater"){
@@ -70,19 +56,6 @@ if ($result && mysqli_num_rows($result) > 0) {
         document.body.appendChild(form);
         form.submit();
     }
-           document.addEventListener("DOMContentLoaded", function() {
-            const profileElement = document.getElementById("profile1");
-            const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>"; 
-            
-
-            profileElement.style.backgroundImage = `url(${imagePath})`;
-            profileElement.style.backgroundSize = "200px 200px";
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-        });
-
-  
         </script>
         <style>
               .history {
@@ -91,21 +64,8 @@ if ($result && mysqli_num_rows($result) > 0) {
             padding: 8px;
             margin: 20px;
             text-align: left;
-                   
         }
-                 #profile2 {
-	border: 1px solid black;
-	height: 60px;
-	width: 60px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
-}</style>
-       
+        </style>
 
         <title>CMS</title>
         <link rel="icon" href="f.png" sizes="120x120" type="image/png">
@@ -162,10 +122,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <div class="sidebar">
                     <div class="sidebar__inner">
                         <div class="profile">
-                             <div class="img">
-                          <div id="profile2"></div>
-                 </div>
-                            
+                            <div class="img">
+                                <img src="https://p7.hiclipart.com/preview/922/81/315/stock-photography-computer-icons-user-3d-character-icon-vector-material.jpg" alt="profile_pic">
+                            </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
                                 <p class="profile_name">User</p>

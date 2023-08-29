@@ -99,6 +99,35 @@ if (isset($_POST['createuser'])) {
     .navbar-center-adjusted {
       margin-left: calc(50% - 350px/2); /* Adjusted for sidebar width */
     }
+      @media (min-width: 992px) {
+    #sb {
+      height: 100vh;
+      background-color: #333;
+      color: white;
+      width: 350px;
+    }
+    #ct {
+      margin-left: 350px;
+    }
+  }
+
+  /* Styles specific to mobile view */
+  @media (max-width: 991px) {
+    #sb {
+      width: 100%;
+      display: none; /* Hide sidebar in mobile */
+    }
+    #ct {
+      margin-left: 0; /* Remove margin for content in mobile */
+    }
+    .navbar-center-adjusted {
+      margin-left: auto; /* Center search bar in mobile */
+    }
+    .d-flex.align-items-center.ml-auto {
+      margin-right: 0; /* Remove right margin in mobile */
+    }
+    /* Adjust other styles as needed for mobile */
+  }
   </style>
   
   <script>

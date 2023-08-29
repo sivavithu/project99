@@ -40,9 +40,10 @@
    <body>
     <center><h1 class = "bh">COMPLAINT MANAGEMENT SYSTEM</h1></center>
       <div class="login">
+         
          <form action="" class="login__form">
             <h1 class="login__title">Login</h1>
-
+               <p id="error-message"></p>
             <div class="login__content">
                <div class="login__box">
                   <i class="ri-user-3-line login__icon"></i>

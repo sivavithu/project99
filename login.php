@@ -1,155 +1,152 @@
 <?php ob_start(); ?>
 <!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-      <link rel="stylesheet" href="login.css">
-
-      <title>CMS</title>
-      <link rel="icon" href="Images/favicon.png" sizes="120x120" type="image/png">
-      <style>
-         body{
-         background-image:url("");
-         background-repeat: no-repeat;
-         background-attachment: fixed;
-         background-size: 100%  100%;
-      }
-     
-      #error-message{
-     background-color:red;
-      }
-      
-    </style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-
-        function showerr() {
-            document.getElementById("error-message").innerHTML="enter a valid username or password";
-        }
-        function deactivatedmsg(){
-            document.getElementById("error-message").innerHTML="your account has been disabled";
-        }
-    </script>
+    <title>OTP Verification</title>
 </head>
-   </head>
-  <body>
-    <center><h1 class="bh">COMPLAINT MANAGEMENT SYSTEM</h1></center>
-    <div class="login">
-        <form action="" class="login__form" method="post">
-            <h1 class="login__title">Login</h1>
-
-            <div class="login__content">
-                <div class="login__box">
-                    <i class="ri-user-3-line login__icon"></i>
-                    <div class="login__box-input">
-                        <input type="username" name="username" required class="login__input" placeholder=" ">
-                        <label for="" class="login__label">Username</label>
-                    </div>
-                </div>
-
-                <div class="login__box">
-                    <i class="ri-lock-2-line login__icon"></i>
-                    <div class="login__box-input">
-                        <input type="password" name="password" required class="login__input" id="login-pass" placeholder=" ">
-                        <label for="" class="login__label">Password</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="login__check">
-                <div class="login__check-group">
-                    <input type="checkbox" class="login__check-input">
-                    <label for="" class="login__check-label">Remember me</label>
-                </div>
-                <a href="otp.php" class="login__forgot">Forgot Password?</a>
-            </div>
-
-            <button type="submit" class="login__button" name="login">Login</button>
-        </form>
-    </div>
-
+<body>
     <?php
-    if (isset($_SESSION['error'])) {
-        echo "<div id='error-message'>" . $_SESSION['error'] . "</div>";
-        unset($_SESSION['error']);
-    }
-    ?>
-</body>
-
-      <?php
     session_start();
     
-    if(isset($_SESSION['error'])){
-        echo $_SESSION['error'];
-    }
-
-    if (isset($_SESSION['invalidmail'])) {
-        echo $_SESSION['invalidmail'];
-    }
-    if (isset($_SESSION['user_id'])) {
-        if ($_SESSION['role'] == 'admin') {
+    if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
+        if($_SESSION['role']=='admin'){
             header("location:/admin/home.php");
-            exit;
-        } else {
-            header("location:/student/home.php");
-            exit;
-        }
+            exit;}
+    
+    else {
+        header("location:/student/home.php");
+        exit;
     }
+}
 
+    if(isset($_SESSION['user_id'])){
+        displayform2();
+
+    }
+    else{
+        displayform1();
+    }
     include ("connection.php");
-    if (isset($_POST['login'])) {
-        if ((isset($_POST['username']) && isset($_POST['password']))) {
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-             echo"st";
-            $query = "select * from users where user_name='$username'";
-            $result = mysqli_query($con, $query);
-            if (!$result) {
-                die("connection failed" . mysqli_connect_error());
-            }
-            echo "hello";
-           if(mysqli_num_rows($result)!=0){
-            $row = mysqli_fetch_assoc($result);
-            echo "hi";
-           if (password_verify($password, $row['password'])) {
-               echo "cor";
-            if($row['status']=='active'){
-                echo "act";
-                  
-             $_SESSION['user_id'] = $row['user_id'];
-               
-              $_SESSION['role'] = $row['role'];
-                   header("location:/index.php");
-                
-                ob_end_flush();
-            }
-            else{
-                echo "<script>deactivatedmsg();</script>";
-            }
-  
+    if (isset($_POST['submit'])) { 
 
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
 
-} 
-
-                  
-            else {
-                echo "<script>showerr();</script>";
-            }
+        $queryforemail = "select * from users where email='$email'";
+        $result = mysqli_query($con, $queryforemail);
+        echo "hi".mysqli_num_rows($result);
+        if (!$result) {
+            echo "Connection failed: " . mysqli_connect_error();
         }
         else{
+        if (mysqli_num_rows($result) != 0) {
+            $_SESSION['email'] = $email;
+            $row = mysqli_fetch_assoc($result);
+            $_SESSION['user_id'] = $row['user_id'];
+            header("location:/sendotp.php");
+            exit;
+        } else {
             echo "<script>showerr();</script>";
         }
-
-    
     }
-    
+}
     }
 
+    if(isset($_SESSION['user_id'])&&isset($_SESSION['timestamp'])){
+        $user=$_SESSION['user_id'];
+   
+        $time=$_SESSION['timestamp'];
+       
+    
+    if (isset($_POST['verify'])&&isset($_POST['otp'])) {
+        $inputOTP = $_POST['otp'];
+
+        $queryforotp="select * from authenthication where user_id='$user' and timestamp='$time' ";
+        $result=mysqli_query($con,$queryforotp);
+        if (!$result) {
+            
+            echo "Query error: " . mysqli_error($con);}
+            
+        if(mysqli_num_rows($result)!=0){
+            $row=mysqli_fetch_assoc($result);
+        
+        if ($inputOTP==$row['otp'] && $time==$row['timestamp']) {
+            
+            $query = "select * from users where user_id='$user'";
+            $userlist = mysqli_query($con, $query);
+            if(!$userlist){
+                echo mysqli_error($con);
+            }
+            $retrieved=mysqli_fetch_assoc($userlist);
+            if ($retrieved) {
+               
+                 header("location:/newpass.php");
+                 exit;
+
+                }
+            } 
+        } 
+        else {
+            $message='invalidotp';
+        }
+    }}
+    
+
+
+
+function showerr(){
+    echo "enter a valid email";
+}
+
+
+function displayform1(){?>
+<div class="emailchecker">
+   <form action="/otp.php" method="post">
+      <span>email:</span><input required type="text" name="email"><span id="err"></span><br>
+      <input type="submit" name="submit" value="submit">
+   </form>
+   </div>
+
+
+
+<?php }function displayform2(){
     ?>
-   </body>
+    <form action="" method="post">
+        OTP: <input type="number" name="otp" id="otp"><span><?php if(isset($message)&& $message='invalidotp'){echo"invaliotp";}?></span><br>
+        <input type="submit" name="verify" value="Verify"><br><br><br>
+    </form>
+    
+    <button id="resendButton">Resend</button>
+
+    <?php } ?>
+    <script>
+        if(window.history.replaceState){
+            window.history.replaceState(null,null,window.location.href);
+        }
+
+        document.getElementById('resendButton').addEventListener('click', function() {
+            sendOtp();
+        });
+        
+        
+        function sendOtp() {
+           window.location.href="/sendotp.php";
+        }
+        
+
+    // Set a timeout to call the function after 5 minutes (300,000 milliseconds)
+         setTimeout(sendOtp, 300000);
+         function showerr(){
+           var err=document.getElementById("err");
+           err.innerHTML="Email doesn't match any account";
+           err.style.backgroundColor="red";
+
+         }
+    </script>
+    </script>
+
+</body>
 </html>

@@ -22,7 +22,7 @@ if (isset($_POST['upload'])) {
     $allowedExtensions = array("jpg", "jpeg");
 
     // Define maximum file size in bytes (for example, 2MB)
-    $maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
+    $maxFileSize = 1024 * 1024; // 2MB in bytes
 
     // Get the uploaded file's extension
     $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));

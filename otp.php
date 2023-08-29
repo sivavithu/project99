@@ -13,15 +13,15 @@
     
     if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
         if($_SESSION['role']=='admin'){
-            header("location:/adminuser.php");
+            header("location:/admin/home.php");
             exit;}
     
-    else {
+    else if($_SESSION['role']=="student"){
         header("location:/student/home.php");
         exit;
     }
 }
-    include ("connection.php");
+
     if(isset($_SESSION['user_id'])){
         displayform2();
 
@@ -29,7 +29,7 @@
     else{
         displayform1();
     }
-
+    include ("connection.php");
     if (isset($_POST['submit'])) { 
 
     if (isset($_POST['email'])) {
@@ -49,7 +49,7 @@
             header("location:/sendotp.php");
             exit;
         } else {
-            echo "<script>showerr();</script>"
+            echo "<script>showerr();</script>";
         }
     }
 }
@@ -104,7 +104,7 @@ function showerr(){
 
 function displayform1(){?>
 <div class="emailchecker">
-   <form action="" method="post">
+   <form action="/otp.php" method="post">
       <span>email:</span><input required type="text" name="email"><span id="err"></span><br>
       <input type="submit" name="submit" value="submit">
    </form>

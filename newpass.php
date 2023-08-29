@@ -1,25 +1,51 @@
 <?php ob_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="newpass">
-        <form action="" method="post">
-            <span>enter new password</span><input type="password" name="password"><br>
-            <input type="submit" name="newpass">
-        </form>
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/newpass.css">
+
+        <title>New Password</title>
+        <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">
+
+        <style>
+            body{
+                background-image:url("images/bg.png");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: 100%  100%;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="login">
+            <form action="" method="post" class="login__form">
+                <div class="login__content">
+                    <div class="login__box">
+                        <i class="ri-mail-line login__icon"></i>
+
+                        <div class="login__box-input">
+                            <input type="password" name="password" required class="login__input" placeholder=" ">
+                            <label for="password" class="login__label">Enter new password</label>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="submit" class="login__button" name="newpass" value="Submit">
+
+            </form>
+        </div>
 
     <?php
     include ("connection.php");
     session_start();
      if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])){
         if($_SESSION['role']=='admin'){
-            header("location:/adminuser.php");
+            header("location:/admin/home.php");
             exit;}
     
     else {
@@ -38,7 +64,8 @@
            }
            session_unset();
            session_destroy();
-          header('location:/login.php');
+     
+           header('location:login.php');
            exit;
        }
     }

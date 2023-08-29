@@ -86,6 +86,7 @@
     
     if(isset($_SESSION['error'])){
         echo $_SESSION['error'];
+        unset($_SESSION['error']);
     }
 
     if (isset($_SESSION['invalidmail'])) {
@@ -124,7 +125,7 @@
              $_SESSION['user_id'] = $row['user_id'];
                
               $_SESSION['role'] = $row['role'];
-                   header("location:/index.php");
+                   header("location:./index.php");
                 
                 ob_end_flush();
             }

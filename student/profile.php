@@ -54,11 +54,7 @@ if (isset($_POST['upload'])) {
         $_SESSION['error_message'] = "Only JPG and JPEG files up to 2MB are allowed.";
     }
 
-    // Redirect back to the profile page
-    header("Location: profile.php");
-    exit();
 }
-
 
 
 

@@ -104,7 +104,7 @@ function showerr(){
 
 function displayform1(){?>
 <div class="emailchecker">
-   <form action="/otp.php" method="post">
+   <form action="" method="post">
       <span>email:</span><input required type="text" name="email"><span id="err"></span><br>
       <input type="submit" name="submit" value="submit">
    </form>

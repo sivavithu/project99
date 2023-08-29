@@ -78,6 +78,8 @@ if (isset($_POST['upload'])) {
         <title>CMS</title>
  <!-- ... (previous code) ... -->
 
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     const profileElement = document.getElementById("profile1");
@@ -85,33 +87,48 @@ if (isset($_POST['upload'])) {
     const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
     const imageExtensions = ["jpg", "jpeg"];
     const imagesFolderPath = "../profileimages/";
-
-    // Check User ID
-    console.log("User ID:", userID);
+    
+    // Function to check if an image exists
+    function checkImageExists(imageURL) {
+      return new Promise(function(resolve) {
+        const img = new Image();
+        img.src = imageURL;
+        img.onload = function() {
+          resolve(true);
+        };
+        img.onerror = function() {
+          resolve(false);
+        };
+      });
+    }
 
     // Try loading images with different extensions
     for (const extension of imageExtensions) {
       const imageURL = `${imagesFolderPath}${userID}.${extension}`;
-      console.log("Trying image URL:", imageURL);
-
-      const img = new Image();
-      img.src = imageURL;
-
-      img.onload = function() {
-        // Set the background image and adjust background size
-        profileElement.style.backgroundImage = `url(${imageURL})`;
-        profileElement.style.backgroundSize = "200px 200px";
-        profileElementx.style.backgroundImage = `url(${imageURL})`;
-        profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-      };
+      
+      // Check if the image exists
+      checkImageExists(imageURL).then(function(exists) {
+        if (exists) {
+          // Set the background image and adjust background size
+          profileElement.style.backgroundImage = `url(${imageURL})`;
+          profileElement.style.backgroundSize = "200px 200px";
+          profileElementx.style.backgroundImage = `url(${imageURL})`;
+          profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+        } else {
+          // Set the default background image (person.png)
+          profileElement.style.backgroundImage = `url("../profileimages/person.png")`;
+          profileElement.style.backgroundSize = "100% 100%";
+          profileElementx.style.backgroundImage = `url("../profileimages/person.png")`;
+          profileElementx.style.backgroundSize = "60% 60%"; // Set dimensions here
+        }
+      });
     }
   });
 </script>
 
-<!-- ... (remaining code) ... -->
 
 
-        <style>
+   <style>
             .modal {
     display: none; 
 
@@ -186,7 +203,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../profileimages/person.png"); /* Set the default background image */
+
 }
 #profile2 {
 	border: 1px solid black;
@@ -198,7 +215,7 @@ if (isset($_POST['upload'])) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../profileimages/person.png"); /* Set the default background image */
+	
 }
 .item1 {
   display: flex;

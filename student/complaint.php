@@ -12,7 +12,33 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
      header("location:../login.php");
        exit;
 }
-     $user=$_SESSION['user_id'];?>
+     $user=$_SESSION['user_id'];
+
+$query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
+$result = mysqli_query($con, $query);
+
+$imagePath = "../profileimages/person.png"; 
+
+if ($result && mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $imagePath = $row['path'];
+}
+
+?>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const profileElement = document.getElementById("profile1");
+            const profileElementx = document.getElementById("profile2");
+            const imagePath = "<?php echo $imagePath; ?>"; 
+            
+
+            profileElement.style.backgroundImage = `url(${imagePath})`;
+            profileElement.style.backgroundSize = "200px 200px";
+            profileElementx.style.backgroundImage = `url(${imagePath})`;
+            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+        });
+    </script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,32 +61,6 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
     
-   document.addEventListener("DOMContentLoaded", function() {
-
-  const profileElementx = document.getElementById("profile2");
-  const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
-  const imageExtensions = ["jpg", "jpeg"];
-  const imagesFolderPath = "../imagestore/";
-
-  // Check User ID
-  console.log("User ID:", userID);
-
-  // Try loading images with different extensions
-  for (const extension of imageExtensions) {
-    const imageURL = `${imagesFolderPath}${userID}.${extension}`;
-    console.log("Trying image URL:", imageURL);
-
-    const img = new Image();
-    img.src = imageURL;
-
-    img.onload = function() {
-      // Set the background image and adjust background size
-     
-      profileElementx.style.backgroundImage = `url(${imageURL})`;
-      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
-    };
-  }
-});
 
 
     

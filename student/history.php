@@ -26,19 +26,6 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 ?>
 
-<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const profileElement = document.getElementById("profile1");
-            const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>"; 
-            
-
-            profileElement.style.backgroundImage = `url(${imagePath})`;
-            profileElement.style.backgroundSize = "200px 200px";
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-        });
-    </script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +49,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
 
-
+ 
     function button(str,issue_id){
         let location;
         if(str=="updater"){
@@ -83,7 +70,18 @@ if ($result && mysqli_num_rows($result) > 0) {
         document.body.appendChild(form);
         form.submit();
     }
-         
+           document.addEventListener("DOMContentLoaded", function() {
+            const profileElement = document.getElementById("profile1");
+            const profileElementx = document.getElementById("profile2");
+            const imagePath = "<?php echo $imagePath; ?>"; 
+            
+
+            profileElement.style.backgroundImage = `url(${imagePath})`;
+            profileElement.style.backgroundSize = "200px 200px";
+            profileElementx.style.backgroundImage = `url(${imagePath})`;
+            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+        });
+
   
         </script>
         <style>

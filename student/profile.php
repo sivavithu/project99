@@ -81,49 +81,33 @@ if (isset($_POST['upload'])) {
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const profileElement = document.getElementById("profile1");
-    const profileElementx = document.getElementById("profile2");
-    const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
-    const imageExtensions = ["jpg", "jpeg"];
-    const imagesFolderPath = "../profileimages/";
-    
-    // Function to check if an image exists
-    function checkImageExists(imageURL) {
-      return new Promise(function(resolve) {
-        const img = new Image();
-        img.src = imageURL;
-        img.onload = function() {
-          resolve(true);
-        };
-        img.onerror = function() {
-          resolve(false);
-        };
-      });
-    }
+ document.addEventListener("DOMContentLoaded", function() {
+   const profileElement = document.getElementById("profile1");
+  const profileElementx = document.getElementById("profile2");
+  const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
+  const imageExtensions = ["jpg", "jpeg"];
+  const imagesFolderPath = "../profileimages/";
 
-    // Try loading images with different extensions
-    for (const extension of imageExtensions) {
-      const imageURL = `${imagesFolderPath}${userID}.${extension}`;
-      
-      // Check if the image exists
-      checkImageExists(imageURL).then(function(exists) {
-        if (exists) {
-          // Set the background image and adjust background size
-          profileElement.style.backgroundImage = `url(${imageURL})`;
-          profileElement.style.backgroundSize = "200px 200px";
-          profileElementx.style.backgroundImage = `url(${imageURL})`;
-          profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-        } else {
-          // Set the default background image (person.png)
-          profileElement.style.backgroundImage = `url("../profileimages/person.png")`;
-          profileElement.style.backgroundSize = "100% 100%";
-          profileElementx.style.backgroundImage = `url("../profileimages/person.png")`;
-          profileElementx.style.backgroundSize = "60% 60%"; // Set dimensions here
-        }
-      });
-    }
-  });
+  // Check User ID
+  console.log("User ID:", userID);
+
+  // Try loading images with different extensions
+  for (const extension of imageExtensions) {
+    const imageURL = `${imagesFolderPath}${userID}.${extension}`;
+    console.log("Trying image URL:", imageURL);
+
+    const img = new Image();
+    img.src = imageURL;
+
+    img.onload = function() {
+      // Set the background image and adjust background size
+       profileElement.style.backgroundImage = `url(${imageURL})`;
+      profileElement.style.backgroundSize = "100px 100px";// Set dimensions here
+      profileElementx.style.backgroundImage = `url(${imageURL})`;
+      profileElementx.style.backgroundSize = "60px 60px";// Set dimensions here
+    };
+  }
+});
 </script>
 
 

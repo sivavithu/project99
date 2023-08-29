@@ -54,13 +54,12 @@ if ($result && mysqli_num_rows($result) > 0) {
   
 
         document.addEventListener("DOMContentLoaded", function() {
-            const profileElement = document.getElementById("profile1");
+            
             const profileElementx = document.getElementById("profile2");
             const imagePath = "<?php echo $imagePath; ?>"; 
             
 
-            profileElement.style.backgroundImage = `url(${imagePath})`;
-            profileElement.style.backgroundSize = "200px 200px";
+        ;
             profileElementx.style.backgroundImage = `url(${imagePath})`;
             profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
         });
@@ -77,7 +76,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	
 }
 </style>
    

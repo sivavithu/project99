@@ -43,7 +43,7 @@ $user=$_SESSION['user_id'];
   const profileElementx = document.getElementById("profile2");
   const userID = "<?php echo $user; ?>"; // Make sure to sanitize and validate this value
   const imageExtensions = ["jpg", "jpeg"];
-  const imagesFolderPath = "../imagestore/";
+  const imagesFolderPath = "../profileimages/";
 
   // Check User ID
   console.log("User ID:", userID);
@@ -75,7 +75,7 @@ $user=$_SESSION['user_id'];
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../images/person.png"); /* Set the default background image */
+	background-image: url("../profileimages/person.png"); /* Set the default background image */
 }
 </style>
    

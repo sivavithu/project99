@@ -121,8 +121,9 @@
              $_SESSION['user_id'] = $row['user_id'];
                
               $_SESSION['role'] = $row['role'];
+               ob_end_flush();
                    header("location:/index.php");
-                   exit;
+              
             
             }
             else{

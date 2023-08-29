@@ -59,7 +59,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             const imagePath = "<?php echo $imagePath; ?>"; 
             
 
-        
+        ;
             profileElementx.style.backgroundImage = `url(${imagePath})`;
             profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
         });

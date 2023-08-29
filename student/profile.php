@@ -5,14 +5,11 @@
 session_start();
 
 
-if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-  header("location:../login.php");
-       exit;
+if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+    header("location:../login.php");
+    exit;
 }
-$user=$_SESSION['user_id'];
-
-
-
+$user = $_SESSION['user_id'];
 
 if (isset($_POST['upload'])) {
     $targetDirectory = "../profileimages/"; // Directory where uploaded images will be stored
@@ -30,30 +27,25 @@ if (isset($_POST['upload'])) {
     // Get the uploaded file's size
     $fileSize = $_FILES["image"]["size"];
 
+    // Create the target file path with the user's ID as the filename
+    $targetFile = $targetDirectory . $userId . "." . $fileExtension;
+
     // Check if the uploaded file has a valid extension and size
     if (in_array($fileExtension, $allowedExtensions) && $fileSize <= $maxFileSize) {
-        // Create the target file path with the user's ID as the filename
-        $targetFile = $targetDirectory . $userId;
-
         // Delete the existing file if it exists
-        if (file_exists($targetFile . ".jpg")) {
-            unlink($targetFile . ".jpg");
-        }
-        
-        if (file_exists($targetFile . ".jpeg")) {
-            unlink($targetFile . ".jpeg");
+        if (file_exists($targetFile)) {
+            unlink($targetFile);
         }
 
         // Move the uploaded file to the target location
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile . "." . $fileExtension)) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile)) {
             $_SESSION['success_message'] = "The file " . basename($_FILES["image"]["name"]) . " has been uploaded and replaced as " . $userId;
         } else {
-            $_SESSION['error_message'] = "Error uploading the file.";
+            $_SESSION['error_message'] = "Error uploading the file. Target file: " . $targetFile;
         }
     } else {
         $_SESSION['error_message'] = "Only JPG and JPEG files up to 2MB are allowed.";
     }
-
 }
 
 

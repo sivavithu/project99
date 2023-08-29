@@ -13,6 +13,7 @@ $user=$_SESSION['user_id'];
 
 
 
+
 if (isset($_POST['upload'])) {
     $targetDirectory = "../profileimages/"; // Directory where uploaded images will be stored
     $userId = $user; // Replace this with the actual user ID
@@ -20,11 +21,17 @@ if (isset($_POST['upload'])) {
     // Define allowed image file extensions
     $allowedExtensions = array("jpg", "jpeg");
 
+    // Define maximum file size in bytes (for example, 2MB)
+    $maxFileSize = 2 * 1024 * 1024; // 2MB in bytes
+
     // Get the uploaded file's extension
     $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
 
-    // Check if the uploaded file has a valid extension
-    if (in_array($fileExtension, $allowedExtensions)) {
+    // Get the uploaded file's size
+    $fileSize = $_FILES["image"]["size"];
+
+    // Check if the uploaded file has a valid extension and size
+    if (in_array($fileExtension, $allowedExtensions) && $fileSize <= $maxFileSize) {
         // Create the target file path with the user's ID as the filename
         $targetFile = $targetDirectory . $userId;
 
@@ -39,14 +46,39 @@ if (isset($_POST['upload'])) {
 
         // Move the uploaded file to the target location
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFile . "." . $fileExtension)) {
-            echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded and replaced as " . $userId;
+            $_SESSION['success_message'] = "The file " . basename($_FILES["image"]["name"]) . " has been uploaded and replaced as " . $userId;
         } else {
-            echo "Error uploading the file.";
+            $_SESSION['error_message'] = "Error uploading the file.";
         }
     } else {
-        echo "Only JPG and JPEG files are allowed.";
+        $_SESSION['error_message'] = "Only JPG and JPEG files up to 2MB are allowed.";
     }
+
+    // Redirect back to the profile page
+    header("Location: profile.php");
+    exit();
 }
+?>
+<!-- Rest of your HTML code -->
+
+<!-- In the HTML part, you can display the messages like this -->
+<?php
+if (isset($_SESSION['success_message'])) {
+    echo '<div class="success">' . $_SESSION['success_message'] . '</div>';
+    unset($_SESSION['success_message']); // Clear the message
+}
+
+if (isset($_SESSION['error_message'])) {
+    echo '<div class="error">' . $_SESSION['error_message'] . '</div>';
+    unset($_SESSION['error_message']); // Clear the message
+}
+?>
+
+
+
+
+
+
 
 ?>
 

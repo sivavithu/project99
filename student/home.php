@@ -13,7 +13,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
        exit;
 }
 $user=$_SESSION['user_id'];
-
+include("../connection.php");
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
 $result = mysqli_query($con, $query);
 

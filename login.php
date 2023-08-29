@@ -1,15 +1,22 @@
 <?php ob_start(); ?>
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+   <html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <link rel="stylesheet" href="login.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    
-    <style>
-        body {
+      <title>CMS</title>
+      <link rel="icon" href="Images/favicon.png" sizes="120x120" type="image/png">
+      <style>
+         body{
+         background-image:url("");
+         background-repeat: no-repeat;
+         background-attachment: fixed;
+         background-size: 100%  100%;
+      }
+      body {
             display: flex;
             justify-content: center;
         }
@@ -32,31 +39,49 @@
         }
     </script>
 </head>
+   </head>
+   <body>
+    <center><h1 class = "bh">COMPLAINT MANAGEMENT SYSTEM</h1></center>
+      <div class="login">
+         <form action="" class="login__form">
+            <h1 class="login__title">Login</h1>
 
-<body>
+            <div class="login__content">
+               <div class="login__box">
+                  <i class="ri-user-3-line login__icon"></i>
 
-    <div class="loginform">
-        <h1>Login</h1>
-        <p id="error-message"></p>
-        <form action="" method="post">
-            <div class="username">
-                <p>Username:</p>
-                <input type="text" name="username">
-            </div>
-            <div class="password">
-                <p>Password:</p>
-                <input type="password" name="password">
-            </div>
-            <div class="submit">
-                <input type="submit" name="login" value="Login">
-            </div>
-        </form>
-        <div class="forgotpass">
-            <a href="/otp.php"><button>forgot password</button></a>
-        </div>
-    </div>
+                  <div class="login__box-input">
+                     <input type="username" required class="login__input" placeholder=" ">
+                     <label for="" class="login__label">Username</label>
+                  </div>
+               </div>
 
-    <?php
+               <div class="login__box">
+                  <i class="ri-lock-2-line login__icon"></i>
+
+                  <div class="login__box-input">
+                     <input type="password" required class="login__input" id="login-pass" placeholder=" ">
+                     <label for="" class="login__label">Password</label>
+                     
+                  </div>
+               </div>
+            </div>
+
+            <div class="login__check">
+               <div class="login__check-group">
+                  <input type="checkbox" class="login__check-input">
+                  <label for="" class="login__check-label">Remember me</label>
+               </div>
+
+               <a href="otp.php" class="login__forgot">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="login__button">Login</button>
+
+         </form>
+      </div>
+
+      <?php
     session_start();
     
     if(isset($_SESSION['error'])){
@@ -76,7 +101,7 @@
         }
     }
 
-    include "connection.php";
+    include ("connection.php");
     if (isset($_POST['login'])) {
         if ((isset($_POST['username']) && isset($_POST['password']))) {
             $username = $_POST['username'];
@@ -126,8 +151,5 @@
     }
 
     ?>
-
-
-</body>
-
+   </body>
 </html>

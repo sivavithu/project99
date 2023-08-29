@@ -58,22 +58,6 @@ if (isset($_POST['upload'])) {
     header("Location: profile.php");
     exit();
 }
-?>
-<!-- Rest of your HTML code -->
-
-<!-- In the HTML part, you can display the messages like this -->
-<?php
-if (isset($_SESSION['success_message'])) {
-    echo '<div class="success">' . $_SESSION['success_message'] . '</div>';
-    unset($_SESSION['success_message']); // Clear the message
-}
-
-if (isset($_SESSION['error_message'])) {
-    echo '<div class="error">' . $_SESSION['error_message'] . '</div>';
-    unset($_SESSION['error_message']); // Clear the message
-}
-?>
-
 
 
 

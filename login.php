@@ -16,10 +16,7 @@
          background-attachment: fixed;
          background-size: 100%  100%;
       }
-      body {
-            display: flex;
-            justify-content: center;
-        }
+     
       #error-message{
      background-color:red;
       }

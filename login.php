@@ -23,26 +23,27 @@
       
     </style>
     
+   
     <script>
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
 
         function showerr() {
-            document.getElementById("error-message").innerHTML="enter a valid username or password";
+            document.getElementById("error-message").innerHTML = "Enter a valid username or password";
         }
-        function deactivatedmsg(){
-            document.getElementById("error-message").innerHTML="your account has been disabled";
+
+        function deactivatedmsg() {
+            document.getElementById("error-message").innerHTML = "Your account has been disabled";
         }
     </script>
 </head>
-   </head>
-  <body>
+<body>
     <center><h1 class="bh">COMPLAINT MANAGEMENT SYSTEM</h1></center>
     <div class="login">
-       <p class="error-message"></p>
         <form action="" class="login__form" method="post">
             <h1 class="login__title">Login</h1>
+            <div id="error-message"></div> <!-- Place the error message container here, just after the title -->
 
             <div class="login__content">
                 <div class="login__box">

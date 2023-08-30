@@ -40,6 +40,7 @@
   <body>
     <center><h1 class="bh">COMPLAINT MANAGEMENT SYSTEM</h1></center>
     <div class="login">
+       <p class="error-message"></p>
         <form action="" class="login__form" method="post">
             <h1 class="login__title">Login</h1>
 

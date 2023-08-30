@@ -132,6 +132,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete'])) {
     .navbar-center-adjusted {
       margin-left: calc(50% - 350px/2); /* Adjusted for sidebar width */
     }
+        @media (max-width: 991.98px) {
+             body {
+      overflow-x: hidden;
+    }
+    #sb {
+      height: 100vh;
+      background-color: #333;
+      color: white;
+      width: 350px;
+    }
+    #ct {
+      margin-left: 350px;
+    }
+   
+  .lg {
+    margin-top: 10px; /* Reduce the margin for more height */
+    margin-bottom: 10px; /* Reduce the margin for more height */
+    background-color: #333;
+    color: white;
+    border-color: #444;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    height: 80px; /* Increase the height */
+    padding-left: 30px;
+    transition: background-color 0.3s;
+  }
+
+  .lg:hover {
+    background-color: #444;
+  }
+
+    .wline {
+      margin-top: 20px;
+      position: relative;
+      top: 20px;
+      border: none;
+      height: 12px;
+      background: white;
+      margin-bottom: 20px;
+    }
+    .dcs {
+      color: white;
+      font-weight: bold;
+      font-size: x-large;
+      margin-left: 70px;
+    }
+    .uoj {
+      color: white;
+      font-weight: bold;
+      font-size: large;
+      margin-left: 20px;
+    }
+    .navbar-center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .navbar-center-adjusted {
+      margin-left: calc(50% - 350px/2); /* Adjusted for sidebar width */
+    }
+        }
   </style>
   
   <script>

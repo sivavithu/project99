@@ -181,7 +181,7 @@ img {
   font-size: var(--small-font-size);
 }
 
-@media screen and (min-width: 576px) {
+@media screen and (min-width: 991.98px) {
   .login {
     justify-content: center;
   }

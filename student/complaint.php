@@ -90,9 +90,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     <body>
  <?php 
    
-
-  
-       $user=$_SESSION['user_id'];
        
        function name(){
         if(isset($_POST['updater'])){
@@ -111,7 +108,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             echo "Add an complaint";
         }
     }
-    include "../connection.php";
+    include ("../connection.php");
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $contact = $_POST['contact'];
@@ -127,7 +124,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                   VALUES ('$user','$username','$contact', '$location', '$type', '$date', '$time', '$issue', '$serial','unresolved')";
     
         if (mysqli_query($con, $query)) {
-           //echo "<script>window.location.href='studentuser.php';</script>";
+         echo "success";
         } else {
             echo "Error: " . mysqli_error($con);
         }
@@ -257,7 +254,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     </form>
                     <div class="item1">
                         
-        <form action="history.php" method="post">
+        <form action="" method="post">
             <div class="username">
                 <label for="username">Username:</label>
                 <input required type="text" id="username" name="username" value="">

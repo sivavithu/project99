@@ -3,31 +3,30 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 ob_start(); ?>
-<?php 
-
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ob_start();
 
 session_start();
 
-
-if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-  header("location:../login.php");
-       exit;
+if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+    header("location:../login.php");
+    exit;
 }
-$user=$_SESSION['user_id'];
 
-
+$user = $_SESSION['user_id'];
 
 include("../connection.php");
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../profileimages/"; 
+    $targetDirectory = "../profileimages/";
     $allowedExtensions = array("jpg", "jpeg");
     $maxFileSize = 2 * 1024 * 1024; // 2 MB
 
     $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $imagePath = $targetDirectory . $_FILES["image"]["name"];
+    $imagePath = $targetDirectory . "image_" . $user . "." . $fileExtension;
 
-    // Check if user ID exists
     $query = "SELECT user_id FROM user_profiles WHERE user_id = '$user'";
     $result = mysqli_query($con, $query);
 
@@ -35,7 +34,6 @@ if (isset($_POST['upload'])) {
         $row = mysqli_fetch_assoc($result);
         $userIdExists = true;
 
-        // Delete the previous image if it exists
         $currentImagePath = $row['path'];
         if (file_exists($currentImagePath)) {
             unlink($currentImagePath);
@@ -46,12 +44,11 @@ if (isset($_POST['upload'])) {
 
     if (in_array($fileExtension, $allowedExtensions) && $_FILES["image"]["size"] <= $maxFileSize) {
         if ($userIdExists) {
-            // Update the image path in the database
             $updateQuery = "UPDATE user_profiles SET path = '$imagePath' WHERE user_id = '$user'";
             $updateResult = mysqli_query($con, $updateQuery);
 
             if ($updateResult) {
-                echo "Image updated successfully.";
+                echo "Image updated successfully. The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded for user " . $user;
             } else {
                 echo "Error updating image record: " . mysqli_error($con);
             }
@@ -60,14 +57,14 @@ if (isset($_POST['upload'])) {
             $insertResult = mysqli_query($con, $insertQuery);
 
             if ($insertResult) {
-                echo "Image uploaded and record inserted successfully.";
+                echo "Image uploaded and record inserted successfully. The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded for user " . $user;
             } else {
                 echo "Error inserting image record: " . mysqli_error($con);
             }
         }
 
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath)) {
-            echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded for user " . $user;
+            // File uploaded successfully
         } else {
             echo "Error uploading the file.";
         }
@@ -75,18 +72,16 @@ if (isset($_POST['upload'])) {
         echo "Only JPG and JPEG files up to 2MB are allowed.";
     }
 }
-$imagePath = "../profileimages/person.png"; 
+
+$imagePath = "../profileimages/person.png";
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
 $result = mysqli_query($con, $query);
-
 
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $imagePath = $row['path'];
 }
-
 ?>
-
 
 
 

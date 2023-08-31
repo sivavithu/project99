@@ -14,6 +14,17 @@ $user=$_SESSION['user_id'];
 $imagePath = "../profileimages/person.png"; 
 include("../connection.php");
 
+ if(isset($_POST['deleter'])){
+        $issue_id=$_POST['deleter'];
+        $query="delete from complaints where issue_id='$issue_id'";
+        
+        if (mysqli_query($con, $query)) {
+            echo "";
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+    }
+
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
 $result = mysqli_query($con, $query);
 
@@ -108,26 +119,10 @@ if ($result && mysqli_num_rows($result) > 0) {
 
     </head>
     <body>
- <?php  session_start();
-   
 
- 
-   if(isset($_SESSION['user_id'])&& isset($_SESSION['role'])&& $_SESSION['role']=='student'){
-       $user=$_SESSION['user_id'];
-       include "../connection.php"; 
-       if(isset($_POST['deleter'])){
-        $issue_id=$_POST['deleter'];
-        $query="delete from complaints where issue_id='$issue_id'";
-        
-        if (mysqli_query($con, $query)) {
-            echo "";
-        } else {
-            echo "Error: " . mysqli_error($con);
-        }
-    }
        
        
-       ?>
+       
 
         <div class="wrapper">
             <div class="top_navbar">

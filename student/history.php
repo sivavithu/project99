@@ -120,7 +120,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         $query="delete from complaints where issue_id='$issue_id'";
         
         if (mysqli_query($con, $query)) {
-            echo "Complaint submitted successfully!";
+            echo "";
         } else {
             echo "Error: " . mysqli_error($con);
         }

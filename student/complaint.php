@@ -257,7 +257,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     </form>
                     <div class="item1">
                         
-        <form action="" method="post">
+        <form action="history.php" method="post">
             <div class="username">
                 <label for="username">Username:</label>
                 <input required type="text" id="username" name="username" value="">

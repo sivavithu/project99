@@ -24,84 +24,7 @@ $result = mysqli_query($con, $query);
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $imagePath = $row['path'];
-}
-	   function name(){
-        if(isset($_POST['updater'])){
-            $_SESSION['issue_id'] = $_POST['updater'];
-            echo "update";
-        }else{
-            echo "submit";
-        }
-        
-    }
-    function title(){
-        if(isset($_POST['updater'])){
-            
-            echo "update the form";
-        }else{
-            echo "Add an complaint";
-        }
-    }
-
-    if (isset($_POST['submit'])) {
-        $username = $_POST['username'];
-        $contact = $_POST['contact'];
-        $location = $_POST['location'];
-        $type = $_POST['type'];
-        $date = $_POST['date'];
-        $time = $_POST['time'];
-        $issue = $_POST['issue'];
-        $serial = $_POST['serial'];
-   
-    
-        $query = "INSERT INTO complaints (user_id,username,contact,location,type,date,time, issue,serial,status)
-                  VALUES ('$user','$username','$contact', '$location', '$type', '$date', '$time', '$issue', '$serial','unresolved')";
-    
-        if (mysqli_query($con, $query)) {
-         echo "success";
-        } else {
-            echo "Error: " . mysqli_error($con);
-        }
-       
-}
-   
-    if (isset($_POST['update'])) {
-   
-
-        $issue_id=$_SESSION['issue_id'];
-        $updatedUsername = $_POST['username'];
-        $updatedLocation = $_POST['location'];
-        $updatedType = $_POST['type'];
-        $updatedDate = $_POST['date'];
-        $updatedTime = $_POST['time'];
-        $updatedIssue = $_POST['issue'];
-        $updatedSerial = $_POST['serial'];
-    
-        $updateQuery = "UPDATE complaints 
-                        SET username = '$updatedUsername', 
-                            location = '$updatedLocation', 
-                            type = '$updatedType', 
-                            date = '$updatedDate', 
-                            time = '$updatedTime', 
-                            issue = '$updatedIssue', 
-                            serial = '$updatedSerial' 
-                        WHERE issue_id = '$issue_id'";
-    
-        if (mysqli_query($con, $updateQuery)) {
-            unset($_SESSION['issue_id']);
-            header("location:history.php");
-            exit;
-           
-        } else {
-            unset($_SESSION['issue_id']);
-         echo "Error: " . mysqli_error($con);
-        }
-    }
-    
-       
-	
-	
-	?>
+}?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -165,7 +88,87 @@ if ($result && mysqli_num_rows($result) > 0) {
 
     </head>
     <body>
- 
+ <?php 
+   
+
+  
+    
+       
+       function name(){
+        if(isset($_POST['updater'])){
+            $_SESSION['issue_id'] = $_POST['updater'];
+            echo "update";
+        }else{
+            echo "submit";
+        }
+        
+    }
+    function title(){
+        if(isset($_POST['updater'])){
+            
+            echo "update the form";
+        }else{
+            echo "Add an complaint";
+        }
+    }
+    include "../connection.php";
+    if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $contact = $_POST['contact'];
+        $location = $_POST['location'];
+        $type = $_POST['type'];
+        $date = $_POST['date'];
+        $time = $_POST['time'];
+        $issue = $_POST['issue'];
+        $serial = $_POST['serial'];
+   
+    
+        $query = "INSERT INTO complaints (user_id,username,contact,location,type,date,time, issue,serial,status)
+                  VALUES ('$user','$username','$contact', '$location', '$type', '$date', '$time', '$issue', '$serial','unresolved')";
+    
+        if (mysqli_query($con, $query)) {
+           //echo "<script>window.location.href='studentuser.php';</script>";
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+       
+}
+   
+    if (isset($_POST['update'])) {
+   
+
+        $issue_id=$_SESSION['issue_id'];
+        $updatedUsername = $_POST['username'];
+        $updatedLocation = $_POST['location'];
+        $updatedType = $_POST['type'];
+        $updatedDate = $_POST['date'];
+        $updatedTime = $_POST['time'];
+        $updatedIssue = $_POST['issue'];
+        $updatedSerial = $_POST['serial'];
+    
+        $updateQuery = "UPDATE complaints 
+                        SET username = '$updatedUsername', 
+                            location = '$updatedLocation', 
+                            type = '$updatedType', 
+                            date = '$updatedDate', 
+                            time = '$updatedTime', 
+                            issue = '$updatedIssue', 
+                            serial = '$updatedSerial' 
+                        WHERE issue_id = '$issue_id'";
+    
+        if (mysqli_query($con, $updateQuery)) {
+            unset($_SESSION['issue_id']);
+            header("location:history.php");
+            exit;
+           
+        } else {
+            unset($_SESSION['issue_id']);
+         echo "Error: " . mysqli_error($con);
+        }
+    }
+    
+       
+       ?>
 
         <div class="wrapper">
             <div class="top_navbar">
@@ -254,7 +257,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     </form>
                     <div class="item1">
                         
-        <form action="" method="post">
+        <form action="history.php" method="post">
             <div class="username">
                 <label for="username">Username:</label>
                 <input required type="text" id="username" name="username" value="">

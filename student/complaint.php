@@ -78,7 +78,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
+	
 }</style>
              
    
@@ -111,7 +111,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             echo "Add an complaint";
         }
     }
-    include "../connection.php";
+    include ("../connection.php");
     if (isset($_POST['submit'])) {
         $username = $_POST['username'];
         $contact = $_POST['contact'];

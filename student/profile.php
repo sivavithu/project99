@@ -15,21 +15,35 @@ $user = $_SESSION['user_id'];
 
 include("../connection.php");
 
+
+session_start();
+
+if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+    header("location:../login.php");
+    exit;
+}
+
+$user = $_SESSION['user_id'];
+
+include("../connection.php");
+
 if (isset($_POST['upload'])) {
     $targetDirectory = "../profileimages/";
     $allowedExtensions = array("jpg", "jpeg");
     $maxFileSize = 2 * 1024 * 1024; // 2 MB
 
     $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $imagePath = $targetDirectory . "image_" . $user . "." . $fileExtension;
+    $uniqueFilename = "image_" . $user . "_" . time() . "." . $fileExtension;
+    $imagePath = $targetDirectory . $uniqueFilename;
 
-    $query = "SELECT user_id FROM user_profiles WHERE user_id = '$user'";
+    $query = "SELECT user_id, path FROM user_profiles WHERE user_id = '$user'";
     $result = mysqli_query($con, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $userIdExists = true;
 
+        // Delete the previous image if it exists
         $currentImagePath = $row['path'];
         if (file_exists($currentImagePath)) {
             unlink($currentImagePath);
@@ -44,7 +58,7 @@ if (isset($_POST['upload'])) {
             $updateResult = mysqli_query($con, $updateQuery);
 
             if ($updateResult) {
-                echo "Image updated successfully. The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded for user " . $user;
+                echo "Image updated successfully.";
             } else {
                 echo "Error updating image record: " . mysqli_error($con);
             }
@@ -53,14 +67,14 @@ if (isset($_POST['upload'])) {
             $insertResult = mysqli_query($con, $insertQuery);
 
             if ($insertResult) {
-                echo "Image uploaded and record inserted successfully. The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded for user " . $user;
+                echo "Image uploaded and record inserted successfully.";
             } else {
                 echo "Error inserting image record: " . mysqli_error($con);
             }
         }
 
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath)) {
-            // File uploaded successfully
+            echo "The file " . basename($_FILES["image"]["name"]) . " has been uploaded for user " . $user;
         } else {
             echo "Error uploading the file.";
         }
@@ -77,6 +91,7 @@ if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $imagePath = $row['path'];
 }
+
 ?>
 
 

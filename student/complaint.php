@@ -84,7 +84,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 	box-shadow: 2px 3px 10px black;
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
+	background-position: center; }/* Center the background image */
 	</style>
         <title>Student-Complaint</title>
         <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">

@@ -1,12 +1,9 @@
 
-<?php
-session_start();
-ob_start();
-?>
+<?php ob_start(); ?>
 <?php 
 
 
-
+session_start();
 
 // Debugging: Check the session variables
 
@@ -14,7 +11,7 @@ ob_start();
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
      header("location:../login.php");
-       ob_end_flush();
+       exit;
 }
      $user=$_SESSION['user_id'];
 include("../connection.php");
@@ -35,7 +32,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/complaint.css">
+        <link rel="stylesheet" href="css/complaintS.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -74,18 +71,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             }	
 
         </script>
-	    <style>
-#profile2 {
-	border: 1px solid black;
-	height: 60px;
-	width: 60px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; }/* Center the background image */
-	</style>
+
         <title>Student-Complaint</title>
         <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">
 
@@ -238,7 +224,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                                <div id="profile2"></div>
+                                <div class="profile2"></div>
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
@@ -319,20 +305,14 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 <label>Date</label>
                                 <input type="date" class="input" id="date" name="date" required value="<?php setValue('date'); ?>">
                             </div>
-                            <div class="inputfield">
-                                <label>Time</label>
-                                <input type="time" class="input" id="time" name="time" required value="<?php setValue('time'); ?>">
-                            </div>
+                            
                             <div class="inputfield">
                                 <label>Description of Issue</label>
                                 <textarea id="issue" name="issue" required class="textarea"><?php setValue('issue'); ?></textarea>
                             </div>
-                            <div class="inputfield terms">
-                                <label class="check">
-                                    <input type="checkbox">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <p>Agreed to terms and conditions</p>
+                            <div class="inputfield">
+                                <label>Serial</label>
+                                <input type="text" class="input" id="time" name="serial" required value="<?php setValue('serial'); ?>">
                             </div>
                             <div class="inputfield">
                                 <input type="submit" name="<?php name(); ?>" value="<?php name(); ?>" class="btn" onclick="openPopup()">

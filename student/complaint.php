@@ -312,7 +312,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                             </div>
                             <div class="inputfield">
                                 <label>Serial</label>
-                                <input type="text" class="input" id="time" name="serial" required value="<?php setValue('serial'); ?>">
+                                <input type="text" class="input" id="serial" name="serial" required value="<?php setValue('serial'); ?>">
                             </div>
                             <div class="inputfield">
                                 <input type="submit" name="<?php name(); ?>" value="<?php name(); ?>" class="btn" onclick="openPopup()">

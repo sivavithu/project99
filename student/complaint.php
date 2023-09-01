@@ -237,8 +237,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <div class="sidebar">
                     <div class="sidebar__inner">
                         <div class="profile">
-                           
-                                <div class="profile2"></div>
+                           <div class="img">
+                            <div id="profile2"></div>
+                            </div>
                             
                             <div class="profile_info">
                                 <p>Welcome</p>

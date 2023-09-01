@@ -74,7 +74,18 @@ if ($result && mysqli_num_rows($result) > 0) {
             }	
 
         </script>
-
+	    <style>
+#profile2 {
+	border: 1px solid black;
+	height: 60px;
+	width: 60px;
+	margin: 10px;
+	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
+	box-shadow: 2px 3px 10px black;
+	background-color: white; /* Set a background color */
+	background-size: 100%; /* Adjust the background size to make the image smaller */
+	background-position: center; /* Center the background image */
+	</style>
         <title>Student-Complaint</title>
         <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">
 

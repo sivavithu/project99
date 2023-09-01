@@ -2,6 +2,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+ob_start();
 ?>
 <?php 
 
@@ -14,7 +15,7 @@ session_start();
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
      header("location:../login.php");
-       exit;
+       ob_end_flush();
 }
      $user=$_SESSION['user_id'];
 include("../connection.php");

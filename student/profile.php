@@ -337,7 +337,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                         </ul>
                     </div>
                 </div>
-                <div class="box-container">
+     <div class="container">
+                    <div class="title">
+                        profile
+                    </div>
+                        
+                    <div class="box-container">
                        <?php
                        include ("../connection.php");
                        $user=$_SESSION['user_id'];
@@ -350,7 +355,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                         
                            
                         <div class="imgBx">
-                            <img id ="picture2" src="">
+                            <img src="images/no-image.jpg">
                         </div>
 
                         <div class="box">
@@ -372,7 +377,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </div>
             </div>
         
-        </div>	
+        </div>
         <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>

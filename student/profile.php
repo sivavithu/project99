@@ -141,6 +141,57 @@ if ($result && mysqli_num_rows($result) > 0) {
     text-decoration: none;
     text-align: center;
 }
+     .top_navbar .menu .right_menu ul{
+  display: flex;
+}
+
+.top_navbar .menu .right_menu ul li{
+  position: relative;
+}
+
+.top_navbar .menu .right_menu ul li .fas{
+  font-size: 22px;
+  cursor: pointer;
+  color: #003996;
+}
+
+.top_navbar .menu .right_menu ul li .profile_dd{
+  position: absolute;
+  top: 35px;
+  right: -10px;
+  background: #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+  padding: 10px 0;
+  width: 150px;
+  text-align: center;
+  border-radius: 3px;
+  display: none;
+  user-select: none;
+}
+
+.top_navbar .menu .right_menu ul li .profile_dd.active{
+  display: block;
+}
+
+.top_navbar .menu .right_menu ul li .profile_dd .dd_item{
+  padding: 10px;
+  cursor: pointer;
+  color: #003996;
+}
+
+.top_navbar .menu .right_menu ul li .profile_dd .dd_item:hover{
+  background: #E0F2F1;
+}
+
+.top_navbar .menu .right_menu ul li .profile_dd:before{
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  border: 10px solid;
+  border-color: transparent transparent #fff transparent;
+}
+   
     </style>
 </head>
  <body>

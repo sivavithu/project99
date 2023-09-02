@@ -94,6 +94,22 @@ if ($result && mysqli_num_rows($result) > 0) {
         }
     </script>
     <link rel="icon" href="f.png" sizes="120x120" type="image/png">
+    <style>
+        .sidebar__inner ul li a {
+    text-decoration: none; /* Remove underline */
+}
+
+/* Adjust the alignment of the sidebar text */
+.sidebar__inner ul li {
+    text-align: left;
+}
+
+/* Adjust the top navbar links */
+.top_navbar .menu ul li a {
+    text-decoration: none; /* Remove underline */
+    text-align: center; /* Center align the text */
+}
+    </style>
 </head>
  <body>
         <div class="wrapper">

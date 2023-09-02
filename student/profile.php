@@ -120,7 +120,12 @@ if ($result && mysqli_num_rows($result) > 0) {
 
     profileImageElement.src = imagePath;
     profileImageElementx.src = imagePath;
-});
+      
+ const editButton = document.querySelector(".edit-btn");
+        editButton.addEventListener("click", function () {
+            $('#uploadModal').modal('show'); // Show the modal when "Edit" is clicked
+        });
+    });
 
 </script>
 
@@ -235,7 +240,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>
                                 <p><strong>Email :</strong> <?php echo $row['email']; ?></p>
                                 <p><strong>Role :</strong> <?php echo $row['role']; ?></p>  
-                                <button class="btn" >edit</button>                           
+                               <button class="btn" data-toggle="modal" data-target="#uploadModal">Edit</button>                      
                         </div>
                            
                         <?php }
@@ -251,16 +256,27 @@ if ($result && mysqli_num_rows($result) > 0) {
             </div>
         
         </div>
-        <div id="myModal" class="modal">
+       <div id="uploadModal" class="modal">
+    <div class="modal-dialog">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Upload Image</h2>
-            <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
-                <label for="image">Select an image to upload(jpg,jpeg):</label>
-                <input type="file" name="image" id="image">
-                <input type="submit" name="upload" value="Upload">
-            </form>
+            <div class="modal-header">
+                <h5 class="modal-title">Upload Profile Image</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Image upload form -->
+                <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="image">Select an image to upload (jpg, jpeg):</label>
+                        <input type="file" class="form-control-file" name="image" id="image" accept=".jpg, .jpeg">
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+</div>
     </body>
 </html>

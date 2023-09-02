@@ -2,110 +2,104 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-    
-ob_start(); ?>
-<?php 
 
+ob_start();
 
 session_start();
 
 // Debugging: Check the session variables
 
-
-
-if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-    echo "<script>alert('hh')</script>";; // Debugging message
+if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+    echo "User not authenticated"; // Debugging message
     header("location:../login.php");
     ob_end_flush();
 }
-
-     $user=$_SESSION['user_id'];
+$user = $_SESSION['user_id'];
 include("../connection.php");
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
 $result = mysqli_query($con, $query);
 
-$imagePath = "../profileimages/person.png"; 
+$imagePath = "../profileimages/person.png";
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
 $result = mysqli_query($con, $query);
 
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
     $imagePath = $row['path'];
-}?>
-
-
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/complaint.css">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-        <script>
-             $(document).ready(function(){
-                $(".hamburger .hamburger__inner").click(function(){
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/complaint.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".hamburger .hamburger__inner").click(function () {
                 $(".wrapper").toggleClass("active")
-                })
-
-                $(".top_navbar .fas").click(function(){
-                $(".profile_dd").toggleClass("active");
-                });
             })
-            if(window.history.replaceState){
-    window.history.replaceState(null,null,window.location.href);}
-   document.addEventListener("DOMContentLoaded", function() {
-    const profileElementx = document.getElementById("profile2");
-    const imagePath = "<?php echo $imagePath; ?>";
-    profileElementx.src = imagePath; // Update this line
-});
 
-            
+            $(".top_navbar .fas").click(function () {
+                $(".profile_dd").toggleClass("active");
+            });
+        })
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const profileElementx = document.getElementById("profile2");
+            const imagePath = "<?php echo $imagePath; ?>";
+
+
+            profileElementx.src = `url(${imagePath})`;
+
             let popup = document.getElementById("popup");
-		
-            function openPopup(){
+
+            function openPopup() {
                 popup.classList.add("open-popup");
             }
-            
-            function closePopup(){
+
+            function closePopup() {
                 popup.classList.remove("open-popup");
-            }	
+            }
 
             // Set dimensions here
         });
 
-            let popup = document.getElementById("popup");
-		
-            function openPopup(){
-                popup.classList.add("open-popup");
-            }
-            
-            function closePopup(){
-                popup.classList.remove("open-popup");
-            }	
+        let popup = document.getElementById("popup");
 
-        </script>
-	    <style>
-	#profile2 {
-	border: 1px solid black;
-	height: 60px;
-	width: 60px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
-	background-size:60px 60px;
-}
-</style>
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
 
-        <title>Student-Complaint</title>
-        <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">
+        function closePopup() {
+            popup.classList.remove("open-popup");
+        }
+    </script>
+    <style>
+        #profile2 {
+            border: 1px solid black;
+            height: 60px;
+            width: 60px;
+            margin: 10px;
+            border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
+            box-shadow: 2px 3px 10px black;
+            background-color: white; /* Set a background color */
+            background-size: 100%; /* Adjust the background size to make the image smaller */
+            background-position: center; /* Center the background image */
+            background-size: 60px 60px;
+        }
+    </style>
 
-    </head>
-    <body>
-    
+    <title>Student-Complaint</title>
+    <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">
+</head>
+<body>
         <?php 
    
 

@@ -243,7 +243,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                         
                            
                         <div class="imgBx">
-                            <img src=""<?php echo $imagePath;?>">
+                            <img src="<?php echo $imagePath;?>">
                         </div>
 
                         <div class="box">

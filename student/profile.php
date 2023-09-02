@@ -109,6 +109,38 @@ if ($result && mysqli_num_rows($result) > 0) {
     text-decoration: none; /* Remove underline */
     text-align: center; /* Center align the text */
 }
+        .profile {
+    display: flex;
+    align-items: center;
+}
+
+
+.profile .img img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.profile .profile_info .profile_name {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
+.sidebar__inner ul li a {
+    text-decoration: none;
+}
+
+
+.sidebar__inner ul li {
+    text-align: center;
+}
+
+
+.top_navbar .menu ul li a {
+    text-decoration: none;
+    text-align: center;
+}
     </style>
 </head>
  <body>

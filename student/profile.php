@@ -1,42 +1,30 @@
+<?php ob_start(); ?>
 <?php 
 
 
-ob_start(); ?>
-<?php
-
 session_start();
 
-if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-    header("location:../login.php");
-    exit;
+
+if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
+  header("location:../login.php");
+       exit;
 }
-
-$user = $_SESSION['user_id'];
-
-include("../connection.php");
+$user=$_SESSION['user_id'];
 
 
-session_start();
-
-if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-    header("location:../login.php");
-    exit;
-}
-
-$user = $_SESSION['user_id'];
 
 include("../connection.php");
 
 if (isset($_POST['upload'])) {
-    $targetDirectory = "../profileimages/";
+    $targetDirectory = "../profileimages/"; 
     $allowedExtensions = array("jpg", "jpeg");
-    $maxFileSize = 2 * 1024 * 1024; // 2 MB
+    $maxFileSize = 1024 * 1024; // 2 MB
 
     $fileExtension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    $uniqueFilename = "image_" . $user . "_" . time() . "." . $fileExtension;
-    $imagePath = $targetDirectory . $uniqueFilename;
+    $imagePath = $targetDirectory . $_FILES["image"]["name"];
 
-    $query = "SELECT user_id, path FROM user_profiles WHERE user_id = '$user'";
+    // Check if user ID exists
+    $query = "SELECT user_id FROM user_profiles WHERE user_id = '$user'";
     $result = mysqli_query($con, $query);
 
     if ($result && mysqli_num_rows($result) > 0) {
@@ -54,6 +42,7 @@ if (isset($_POST['upload'])) {
 
     if (in_array($fileExtension, $allowedExtensions) && $_FILES["image"]["size"] <= $maxFileSize) {
         if ($userIdExists) {
+            // Update the image path in the database
             $updateQuery = "UPDATE user_profiles SET path = '$imagePath' WHERE user_id = '$user'";
             $updateResult = mysqli_query($con, $updateQuery);
 
@@ -79,13 +68,13 @@ if (isset($_POST['upload'])) {
             echo "Error uploading the file.";
         }
     } else {
-        echo "Only JPG and JPEG files up to 2MB are allowed.";
+        echo "Only JPG and JPEG files up to 1MB are allowed.";
     }
 }
-
-$imagePath = "../profileimages/person.png";
+$imagePath = "../profileimages/person.png"; 
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";
 $result = mysqli_query($con, $query);
+
 
 if ($result && mysqli_num_rows($result) > 0) {
     $row = mysqli_fetch_assoc($result);
@@ -99,15 +88,15 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="css/profile.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="path/to/idb.filesystem.js"></script>
-
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
         <script src="script.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0"> </script>
@@ -115,20 +104,24 @@ if ($result && mysqli_num_rows($result) > 0) {
      
 
         <title>CMS</title>
- <!-- ... (previous code) ... -->
+
 
 <script>
-   document.addEventListener("DOMContentLoaded", function() {
-    const profileElement = document.getElementById("profile1");
-            const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>"; 
-            
+      if(window.history.replaceState){
+    window.history.replaceState(null,null,window.location.href);}
 
-            profileElement.style.backgroundImage = `url(${imagePath})`;
-            profileElement.style.backgroundSize = "200px 200px"; // Set dimensions here
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-        });
+
+
+  
+    document.addEventListener("DOMContentLoaded", function() {
+    const profileImageElement = document.getElementById("picture1");
+    const profileImageElementx = document.getElementById("picture2");
+    const imagePath = "<?php echo $imagePath; ?>"; 
+
+    profileImageElement.src = imagePath;
+    profileImageElementx.src = imagePath;
+});
+
 </script>
 
 <!-- ... (remaining code) ... -->
@@ -199,30 +192,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             background-color: #002678;
         }
 
-        #profile1 {
-	border: 1px solid black;
-	height: 200px;
-	width: 200px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
-	
-}
-#profile2 {
-	border: 1px solid black;
-	height: 60px;
-	width: 60px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
-	
-}
+
 .item1 {
   display: flex;
   flex-direction: column;
@@ -326,7 +296,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                            <div id="profile2"></div>
+                                <img id="picture1" src="" alt="profile_pic">
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
@@ -367,38 +337,28 @@ if ($result && mysqli_num_rows($result) > 0) {
                         </ul>
                     </div>
                 </div>
-                <div class="container">
-                    <center>
-                        <h2> Welcome to department of computer science complaint register portal </h2>
-                    </center>
-                    <br><br>
-           
-    <center>
-        <div id="profile1"></div>
-    </center>
-
-<center>
-                    <button id="openModal">Add/Change Picture</button></center>
-                    <div class="item1">
+                <div class="box-container">
                        <?php
                        include ("../connection.php");
+                       $user=$_SESSION['user_id'];
                        $sql = "SELECT * FROM users WHERE user_id='$user'";
                        $result = mysqli_query($con, $sql);
 
                        if ($result) {
                            while ($row = mysqli_fetch_assoc($result)) {
                     ?>
-                     
-                
+                        
+                           
+                        <div class="imgBx">
+                            <img id ="picture2" src="">
+                        </div>
 
-                     <div class='profile'>
-                        
-                        <p><strong>username:</strong> <?php echo $row['user_name']; ?></p>
-                        <p><strong>email:</strong> <?php echo $row['email']; ?></p>
-                        <p><strong>role:</strong> <?php echo $row['role']; ?></p>
-                        
-                      
-                    </div>
+                        <div class="box">
+                                <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>
+                                <p><strong>Email :</strong> <?php echo $row['email']; ?></p>
+                                <p><strong>Role :</strong> <?php echo $row['role']; ?></p>  
+                                <button class="btn" >edit</button>                           
+                        </div>
                            
                         <?php }
                     } else {

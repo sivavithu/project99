@@ -159,12 +159,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                     </div>
                     <div class="right_menu">
                         <ul>
-    <li><i class="fas fa-user"></i>
-        <div class="profile_dd">
-            <div class="dd_item"><a href="logout.php">Logout</a></div>
-        </div>
-    </li>
-</ul>
+                            <li><i class="fas fa-user"></i>
+                                <div class="profile_dd">
+                                <div class="dd_item"><a href="../logout.php">Logout</a></div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>

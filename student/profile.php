@@ -151,13 +151,13 @@ if ($result && mysqli_num_rows($result) > 0) {
                         </div>
                         <ul>
                             <li>
-                                <a href="home.php" class="active">
+                                <a href="home.php" >
                                 <span class="icon"><i class="ri-home-4-fill"></i></span>
                                 <span class="title">Home</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="profile.php">
+                                <a href="profile.php" class="active">
                                 <span class="icon"><i class="ri-account-circle-fill"></i></span>
                                 <span class="title">Profile</span>
                                 </a>

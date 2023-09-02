@@ -95,78 +95,78 @@ if ($result && mysqli_num_rows($result) > 0) {
     </script>
     <link rel="icon" href="f.png" sizes="120x120" type="image/png">
 </head>
-<body>
-    <div class="wrapper">
-        <div class="top_navbar">
-            <div class="hamburger">
-                <div class="hamburger__inner">
-                    <div class="one"></div>
-                    <div class="two"></div>
-                    <div class="three"></div>
-                </div>
-            </div>
-            <div class="menu">
-                <div class="logo">
-                    HOME
-                </div>
-                <div class="right_menu">
-                    <ul>
-                        <li><i class="fas fa-user"></i>
-                            <div class="profile_dd">
-                                <div class="dd_item"><a href="../logout.php">Logout</a></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <div class="main_container">
-            <div class="sidebar">
-                <div class="sidebar__inner">
-                    <div class="profile">
-                        <div class="img">
-                           <img id="picture1" src="<?php echo $imagePath; ?>">
-                        </div>
-                        <div class="profile_info">
-                            <p>Welcome</p>
-                            <p class="profile_name">User</p>
-                        </div>
+ <body>
+        <div class="wrapper">
+            <div class="top_navbar">
+                <div class="hamburger">
+                    <div class="hamburger__inner">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
                     </div>
-                    <ul>
-                        <li>
-                            <a href="./home.php" >
+                </div>
+                <div class="menu">
+                    <div class="logo">
+                        HOME
+                    </div>
+                    <div class="right_menu">
+                        <ul>
+                            <li><i class="fas fa-user"></i>
+                                <div class="profile_dd">
+                                <div class="dd_item"><a href="../logout.php">Logout</a></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="main_container">
+                <div class="sidebar">
+                    <div class="sidebar__inner">
+                        <div class="profile">
+                            <div class="img">
+                                <img id="profile" src="<?php echo $imagePath;?>" alt="profile_pic">
+                            </div>
+                            <div class="profile_info">
+                                <p>Welcome</p>
+                                <p class="profile_name">User</p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="home.php" class="active">
                                 <span class="icon"><i class="ri-home-4-fill"></i></span>
                                 <span class="title">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./profile.php" class="active">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="profile.php">
                                 <span class="icon"><i class="ri-account-circle-fill"></i></span>
                                 <span class="title">Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./password.php">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="password.php">
                                 <span class="icon"><i class="ri-key-2-fill"></i></span>
                                 <span class="title">Change Password</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./complaint.php">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="complaint.php">
                                 <span class="icon"><i class="ri-add-circle-fill"></i></span>
                                 <span class="title">Add Complaint</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./history.php">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="history.php">
                                 <span class="icon"><i class="ri-check-double-line"></i></span>
                                 <span class="title">Your Complaints</span>
-                            </a>
-                        </li>
-                    </ul>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
             <div class="container">
                 <div class="title">
                     profile

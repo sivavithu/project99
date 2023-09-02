@@ -233,7 +233,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="box-container">
                    
                         <div class="imgBx">
-                            <img id="picture2" src="">
+                            <img id="picture2" src=""<?php echo $imagePath;?>">
                         </div>
                         <div class="box">
                             <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>

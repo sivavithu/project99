@@ -168,8 +168,8 @@ if ($result && mysqli_num_rows($result) > 0) {
             
 
         
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+            profileElementx.src = `url(${imagePath})`;
+            
         });
 
            let popup = document.getElementById("popup");

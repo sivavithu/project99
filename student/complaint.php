@@ -161,15 +161,15 @@ if ($result && mysqli_num_rows($result) > 0) {
             window.history.replaceState(null, null, window.location.href);
         }
 
-       document.addEventListener("DOMContentLoaded", function() {
+          document.addEventListener("DOMContentLoaded", function() {
             
             const profileElementx = document.getElementById("profile2");
             const imagePath = "<?php echo $imagePath; ?>"; 
             
 
         
-            profileElementx.src = imagePath;
-            
+            profileElementx.style.backgroundImage = `url(${imagePath})`;
+            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
         });
 
            let popup = document.getElementById("popup");
@@ -235,7 +235,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                                <img id="profile" src="" alt="profile_pic">
+                                <div id="profile2">
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>

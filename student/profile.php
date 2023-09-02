@@ -134,16 +134,8 @@ if ($result && mysqli_num_rows($result) > 0) {
 });
 </script>
 
-<!-- ... (remaining code) ... -->
 
-
-        <style>
-      </style>
-
-
-
-
-        <link rel="icon" href="f.png" sizes="120x120" type="image/png">
+ <link rel="icon" href="f.png" sizes="120x120" type="image/png">
 
     </head>
     <body>
@@ -279,7 +271,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                             <input type="file" class="form-control-file" name="image" id="image" accept=".jpg, .jpeg">
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Upload</button>
+                            <input type="submit" name="upload" class="btn btn-primary" value="upload">
                         </div>
                     </form>
                 </div>

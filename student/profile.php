@@ -97,7 +97,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        
         <script src="script.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0"> </script>
 

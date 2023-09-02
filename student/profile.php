@@ -283,7 +283,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                             <input type="file" class="form-control-file" name="image" id="image" accept=".jpg, .jpeg">
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" name="upload" class="btn btn-primary" value="Upload">
+                            <input type="submit" name="upload" class="btn btn-primary" value="Edit">
                         </div>
                     </form>
                 </div>

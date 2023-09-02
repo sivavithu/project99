@@ -24,13 +24,37 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $imagePath = $row['path'];
-    }?>
+    }
+    
+    
+    include ("../connection.php");
+ 
+  
+ 
+    
+    if(isset($_POST['change'])){
+     $password=password_hash($_POST['password'],PASSWORD_DEFAULT);
+     $sql = "UPDATE users SET password ='$password' WHERE user_id = '$user'";
+     $result=mysqli_query($con,$sql);
+     if($result){
+      header("location:./home.php");
+      exit;
+     }
+      else{
+         echo mysqli_error($con);
+      }
+    }
+    
+    
+    
+    
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/password.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
@@ -59,64 +83,19 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
             if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
 
-    
-    document.addEventListener("DOMContentLoaded", function() {
-            
-            const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>"; 
-            
-
-        
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
-        });
+ 
 
         </script>
          
 
         <title>CMS</title>
         <link rel="icon" href="f.png" sizes="120x120" type="image/png">
-          <style>#profile2 {
-	border: 1px solid black;
-	height: 60px;
-	width: 60px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
-	background-image: url("../imagestore/person.png"); /* Set the default background image */
-}</style>
+    </style>
     </head>
     <body>
- <?php  
-   
-  include ("../connection.php");
  
-  
-       $user=$_SESSION['user_id'];
        
-       if(isset($_POST['change'])){
-        $password=password_hash($_POST['password'],PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET password ='$password' WHERE user_id = '$user'";
-        $result=mysqli_query($con,$sql);
-        if($result){
-         header("location:./home.php");
-         exit;
-        }
-         else{
-            echo mysqli_error($con);
-         }
-       }
-       
-       
-       
-       
-       
-       ?>
-
-        <div class="wrapper">
+    <div class="wrapper">
             <div class="top_navbar">
                 <div class="hamburger">
                     <div class="hamburger__inner">
@@ -127,7 +106,7 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                 </div>
                 <div class="menu">
                     <div class="logo">
-                        HOME
+                        CHANGE PASSWORD
                     </div>
                     <div class="right_menu">
                         <ul>
@@ -146,9 +125,8 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                          <div id="profile2"></div>
-                 </div>
-                          
+                                <img src="<?php echo $imagePath ?>" alt="profile_pic">
+                            </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
                                 <p class="profile_name">User</p>
@@ -189,38 +167,29 @@ if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'
                     </div>
                 </div>
                 <div class="container">
-                    <center>
-                        <h2> Welcome to department of computer science complaint register portal </h2>
-                    </center>
-                    <br><br>
-                    <center>
-                        <h2> Change Password </h2>
-                    </center>
-                    <br><br>
-                        
-                    <div class="item1">
-                   <div class="search">
-                    <form action="history.php" method="post">
-        <input type="text" name="key">
-         <input type="submit" name="search" value="search">
-    </form>
-    <form action="" method="post">
-    <label for="new_password">New Password:</label>
-<input type="password" id="new_password" name="password" required>
-<br><br>
+                    <div class="form">
+                        <div class="title">
+                            Change Password
+                        </div>
+                        <form action="" method="post">
+                            <div class="inputfield">
+                                <label>New Password</label>
+                                <input required type="password" class="input" id="confirm_password" name="confirm_password">
+                            </div>  
+                            <div class="inputfield">
+                                <label>Confirm Password</label>
+                                <input required type="password" class="input" id="contact" name="contact">
+                            </div>  
+                            <div class="inputfield">
+                                <input type="submit" name="change" value="CHANGE PASSWORD" class="btn" onclick="validatePassword(event)">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </body>
+</html>
 
-<label for="confirm_password">Confirm New Password:</label>
-<input type="password" id="confirm_password" name="confirm_password" required>
-<span id="confirm_password_error" style="color: red;"></span>
-<br><br>
-
-<input type="submit" name="change" value="Change Password" onclick="validatePassword(event)">
-    </form>
-</div>
-           
-        
-        </div>	
- 
-  
     </body>
 </html>

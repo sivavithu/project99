@@ -230,12 +230,12 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </div>
             </div>
             
-            <div class="main_container">
+              <div class="main_container">
                 <div class="sidebar">
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                                <div id="profile2">
+                            <div id="profile2"></div>
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>

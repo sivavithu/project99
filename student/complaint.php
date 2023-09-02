@@ -168,7 +168,7 @@ if ($result && mysqli_num_rows($result) > 0) {
             
 
         
-            profileElementx.src = `url(${imagePath})`;
+            profileElementx.src = imagePath;
             
         });
 

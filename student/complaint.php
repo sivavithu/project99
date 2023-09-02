@@ -56,8 +56,19 @@ if ($result && mysqli_num_rows($result) > 0) {
             
 
         
-            profileElementx.style.backgroundImage = `url(${imagePath})`;
-            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+            profileElementx.src = `url(${imagePath})`;
+            
+            let popup = document.getElementById("popup");
+		
+            function openPopup(){
+                popup.classList.add("open-popup");
+            }
+            
+            function closePopup(){
+                popup.classList.remove("open-popup");
+            }	
+
+            // Set dimensions here
         });
 
             let popup = document.getElementById("popup");
@@ -82,7 +93,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 	background-color: white; /* Set a background color */
 	background-size: 100%; /* Adjust the background size to make the image smaller */
 	background-position: center; /* Center the background image */
-	
+	background-size:60px 60px;
 }
 </style>
 
@@ -208,7 +219,9 @@ if ($result && mysqli_num_rows($result) > 0) {
         
         ?>
   
-        <div class="wrapper">
+        
+  
+  <div class="wrapper">
             <div class="top_navbar">
                 <div class="hamburger">
                     <div class="hamburger__inner">
@@ -237,10 +250,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <div class="sidebar">
                     <div class="sidebar__inner">
                         <div class="profile">
-                           <div class="img">
-                            <div id="profile2"></div>
+                            <div class="img">
+                                <img id="profile" src="" alt="profile_pic">
                             </div>
-                            
                             <div class="profile_info">
                                 <p>Welcome</p>
                                 <p class="profile_name">User</p>

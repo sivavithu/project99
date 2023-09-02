@@ -231,21 +231,42 @@ if ($result && mysqli_num_rows($result) > 0) {
                     profile
                 </div>
                     <div class="box-container">
-                   
+                       <?php
+                       include ("../connection.php");
+                       $user=$_SESSION['user_id'];
+                       $sql = "SELECT * FROM users WHERE user_id='$user'";
+                       $result = mysqli_query($con, $sql);
+
+                       if ($result) {
+                           while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        
+                           
                         <div class="imgBx">
-                            <img id="picture2" src=""<?php echo $imagePath;?>">
+                            <img src=""<?php echo $imagePath;?>">
                         </div>
+
                         <div class="box">
-                            <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>
-                            <p><strong>Email :</strong> <?php echo $row['email']; ?></p>
-                            <p><strong>Role :</strong> <?php echo $row['role']; ?></p>  
-                            <button class="btn btn-primary edit-btn" data-toggle="modal" data-target="#uploadModal">Edit</button>              
+                                <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>
+                                <p><strong>Email :</strong> <?php echo $row['email']; ?></p>
+                                <p><strong>Role :</strong> <?php echo $row['role']; ?></p>  
+                                 <input class="btn btn-primary edit-btn" data-toggle="modal" data-target="#uploadModal" name="upload" value="upload">                      
                         </div>
+                           
+                        <?php }
+                    } else {
+                        echo "Error: " . mysqli_error($con);
+                    }
+                 
+                       ?>
+                    </div>
                    
+                    
                 </div>
             </div>
-        </div>
-    </div>
+        
+        </div>	
+
     <div id="uploadModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

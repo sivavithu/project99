@@ -93,14 +93,12 @@ if ($result && mysqli_num_rows($result) > 0) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-       <link rel="stylesheet" href="css/profile.css">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-        
-        <script src="script.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0"> </script>
+      <link rel="stylesheet" href="css/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 
      
 
@@ -111,22 +109,27 @@ if ($result && mysqli_num_rows($result) > 0) {
       if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const profileImageElement = document.getElementById("picture1");
+        const profileImageElementx = document.getElementById("picture2");
+        const imagePath = "<?php echo $imagePath; ?>";
 
+        profileImageElement.src = imagePath;
+        profileImageElementx.src = imagePath;
 
-  document.addEventListener("DOMContentLoaded", function() {
-    const profileImageElement = document.getElementById("picture1");
-    const profileImageElementx = document.getElementById("picture2");
-    const imagePath = "<?php echo $imagePath; ?>"; 
+        // Hide the modal when the page loads
+        $('#uploadModal').modal('hide');
 
-    profileImageElement.src = imagePath;
-    profileImageElementx.src = imagePath;
+        // Open the modal when the "Edit" button is clicked
+        const editButton = document.querySelector(".edit-btn");
+        editButton.addEventListener("click", function () {
+            $('#uploadModal').modal('show');
+        });
 
-    // Hide the modal when the page loads
-    $('#uploadModal').modal('hide');
-
-    const editButton = document.querySelector(".edit-btn");
-    editButton.addEventListener("click", function () {
-        $('#uploadModal').modal('show'); // Show the modal when "Edit" is clicked
+        // Close the modal when the close button or backdrop is clicked
+        $('#uploadModal').on('hidden.bs.modal', function () {
+            // You can perform additional actions here if needed
+        });
     });
 });
 </script>
@@ -242,7 +245,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                                 <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>
                                 <p><strong>Email :</strong> <?php echo $row['email']; ?></p>
                                 <p><strong>Role :</strong> <?php echo $row['role']; ?></p>  
-                               <button class="btn" data-toggle="modal" data-target="#uploadModal">Edit</button>                      
+                         <button class="btn btn-primary edit-btn" data-toggle="modal" data-target="#uploadModal">Edit</button>              
                         </div>
                            
                         <?php }
@@ -258,29 +261,30 @@ if ($result && mysqli_num_rows($result) > 0) {
             </div>
         
         </div>
-      <div id="uploadModal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Upload Profile Image</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Image upload form -->
-                <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="image">Select an image to upload (jpg, jpeg):</label>
-                        <input type="file" class="form-control-file" name="image" id="image" accept=".jpg, .jpeg">
-                    </div>
-                    <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
-                </form>
+ <div id="uploadModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal header with close button -->
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Profile Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!-- Modal body with image upload form -->
+                <div class="modal-body">
+                    <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="image">Select an image to upload (jpg, jpeg):</label>
+                            <input type="file" class="form-control-file" name="image" id="image" accept=".jpg, .jpeg">
+                        </div>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
     </body>
 </html>

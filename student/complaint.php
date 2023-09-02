@@ -14,9 +14,11 @@ session_start();
 
 
 if(!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-     header("location:../login.php");
-       ob_end_flush();
+    echo "<script>alert('hh')</script>";; // Debugging message
+    header("location:../login.php");
+    ob_end_flush();
 }
+
      $user=$_SESSION['user_id'];
 include("../connection.php");
 $query = "SELECT * FROM user_profiles WHERE user_id = '$user'";

@@ -95,20 +95,71 @@ if ($result && mysqli_num_rows($result) > 0) {
     </script>
     <link rel="icon" href="f.png" sizes="120x120" type="image/png">
     <style>
-        .sidebar__inner ul li a {
-    text-decoration: none; /* Remove underline */
+  /* Reset Bootstrap styles for the sidebar */
+.main_container .sidebar {
+  width: 225px;
+  background: #003996;
 }
 
-/* Adjust the alignment of the sidebar text */
-.sidebar__inner ul li {
-    text-align: left;
+.main_container .sidebar .profile {
+  padding: 20px 0;
 }
 
-/* Adjust the top navbar links */
-.top_navbar .menu ul li a {
-    text-decoration: none; /* Remove underline */
-    text-align: center; /* Center align the text */
+.main_container .sidebar .profile img {
+  width: 45px;
 }
+
+.main_container .sidebar .profile p:first-child {
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.main_container .sidebar ul li a {
+  padding: 20px 30px;
+}
+
+/* Remove Bootstrap styles for active sidebar links */
+.main_container .sidebar ul li a:hover,
+.main_container .sidebar ul li a.active {
+  background: none;
+  color: #fff;
+}
+
+/* Add back your custom styles */
+.main_container .sidebar ul li a span {
+  display: inline-block;
+}
+
+/* Reset box shadow on the sidebar */
+.main_container .sidebar {
+  box-shadow: none;
+}
+
+/* Reset margin-top on the sidebar profile */
+.main_container .sidebar .profile {
+  margin-top: 0;
+}
+
+/* Reset position of the sidebar profile image */
+.main_container .sidebar .profile .img {
+  padding: 0;
+}
+
+/* Reset position of the sidebar profile text */
+.main_container .sidebar .profile .profile_info {
+  margin-left: 0;
+}
+
+/* Reset font size for the sidebar links */
+.main_container .sidebar ul li a {
+  font-size: 16px;
+}
+
+/* Reset background color for the sidebar links */
+.main_container .sidebar ul li a {
+  background: none;
+}
+
         .profile {
     display: flex;
     align-items: center;

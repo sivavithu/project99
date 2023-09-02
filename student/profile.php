@@ -79,26 +79,36 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/profile.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
-    <title>CMS</title>
-    <script>
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
-        }
-    </script>
-    <link rel="icon" href="f.png" sizes="120x120" type="image/png">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/profileS.css">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".hamburger .hamburger__inner").click(function(){
+                $(".wrapper").toggleClass("active")
+                })
+
+                $(".top_navbar .fas").click(function(){
+                $(".profile_dd").toggleClass("active");
+                });
+            })
+            if(window.history.replaceState){
+    window.history.replaceState(null,null,window.location.href);}
+
+
+    
+ 
+        </script>
+ 
+            <style>
         .sidebar__inner ul li a {
     text-decoration: none; /* Remove underline */
-}
+} 
 
 /* Adjust the alignment of the sidebar text */
 .sidebar__inner ul li {
@@ -137,66 +147,15 @@ if ($result && mysqli_num_rows($result) > 0) {
     text-align: center;
 }
 
+          </style>
+        <title>Student-Profile</title>
+        <link rel="icon" href="images/favicon.png" sizes="120x120" type="image/png">
 
-.top_navbar .menu ul li a {
-    text-decoration: none;
-    text-align: center;
-}
-     .top_navbar .menu .right_menu ul{
-  display: flex;
-}
-
-.top_navbar .menu .right_menu ul li{
-  position: relative;
-}
-
-.top_navbar .menu .right_menu ul li .fas{
-  font-size: 22px;
-  cursor: pointer;
-  color: #003996;
-}
-
-.top_navbar .menu .right_menu ul li .profile_dd{
-  position: absolute;
-  top: 35px;
-  right: -10px;
-  background: #fff;
-  box-shadow: 0 0 2px rgba(0,0,0,0.5);
-  padding: 10px 0;
-  width: 150px;
-  text-align: center;
-  border-radius: 3px;
-  display: none;
-  user-select: none;
-}
-
-.top_navbar .menu .right_menu ul li .profile_dd.active{
-  display: block;
-}
-
-.top_navbar .menu .right_menu ul li .profile_dd .dd_item{
-  padding: 10px;
-  cursor: pointer;
-  color: #003996;
-}
-
-.top_navbar .menu .right_menu ul li .profile_dd .dd_item:hover{
-  background: #E0F2F1;
-}
-
-.top_navbar .menu .right_menu ul li .profile_dd:before{
-  content: "";
-  position: absolute;
-  top: -20px;
-  right: 10px;
-  border: 10px solid;
-  border-color: transparent transparent #fff transparent;
-}
-   
-    </style>
-</head>
- <body>
-     <div class="wrapper">
+    </head>
+    <body>
+ 
+    <body>
+        <div class="wrapper">
             <div class="top_navbar">
                 <div class="hamburger">
                     <div class="hamburger__inner">
@@ -207,7 +166,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </div>
                 <div class="menu">
                     <div class="logo">
-                        PROFILE
+                        HOME
                     </div>
                     <div class="right_menu">
                         <ul>
@@ -226,7 +185,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                                <img src="images/no-image.jpg" alt="profile_pic">
+                                <img id="profile" src="<?php echo $imagePath;?>" alt="profile_pic">
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
@@ -235,31 +194,31 @@ if ($result && mysqli_num_rows($result) > 0) {
                         </div>
                         <ul>
                             <li>
-                                <a href="./home.php" >
+                                <a href="home.php" >
                                 <span class="icon"><i class="ri-home-4-fill"></i></span>
                                 <span class="title">Home</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./profile.php" class="active">
+                                <a href="profile.php" class="active">
                                 <span class="icon"><i class="ri-account-circle-fill"></i></span>
                                 <span class="title">Profile</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./password.php">
+                                <a href="password.php">
                                 <span class="icon"><i class="ri-key-2-fill"></i></span>
                                 <span class="title">Change Password</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./complaint.php">
+                                <a href="complaint.php">
                                 <span class="icon"><i class="ri-add-circle-fill"></i></span>
                                 <span class="title">Add Complaint</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="./history.php">
+                                <a href="history.php">
                                 <span class="icon"><i class="ri-check-double-line"></i></span>
                                 <span class="title">Your Complaints</span>
                                 </a>
@@ -272,16 +231,9 @@ if ($result && mysqli_num_rows($result) > 0) {
                     profile
                 </div>
                 <div class="box-container">
-                    <?php
-                    $user = $_SESSION['user_id'];
-                    $sql = "SELECT * FROM users WHERE user_id='$user'";
-                    $result = mysqli_query($con, $sql);
-
-                    if ($result) {
-                        while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
+                   
                         <div class="imgBx">
-                            <img id="picture2" src="<?php echo $imagePath; ?>">
+                            <img id="picture2" src="">
                         </div>
                         <div class="box">
                             <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>
@@ -289,12 +241,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                             <p><strong>Role :</strong> <?php echo $row['role']; ?></p>  
                             <button class="btn btn-primary edit-btn" data-toggle="modal" data-target="#uploadModal">Edit</button>              
                         </div>
-                    <?php
-                        }
-                    } else {
-                        echo "Error: " . mysqli_error($con);
-                    }
-                    ?>
+                   
                 </div>
             </div>
         </div>

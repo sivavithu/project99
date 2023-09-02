@@ -9,7 +9,6 @@ session_start();
 // Debugging: Check the session variables
 
 if (!(isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] == 'student')) {
-    echo "User not authenticated"; // Debugging message
     header("location:../login.php");
     ob_end_flush();
 }
@@ -162,13 +161,16 @@ if ($result && mysqli_num_rows($result) > 0) {
             window.history.replaceState(null, null, window.location.href);
         }
 
-        document.addEventListener("DOMContentLoaded", function () {
-
+       document.addEventListener("DOMContentLoaded", function() {
+            
             const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>";
+            const imagePath = "<?php echo $imagePath; ?>"; 
+            
 
-
-            profileElementx.src = `url(${imagePath})`;
+        
+            profileElementx.style.backgroundImage = `url(${imagePath})`;
+            profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
+        });
 
             let popup = document.getElementById("popup");
 

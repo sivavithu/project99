@@ -300,8 +300,8 @@
 
 .wrapper.active .main_container .container .box-container .imgBx{
   position: absolute;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   border-radius: 50%;
   background-color: #ffffff;
@@ -310,12 +310,12 @@
   transition: all 0.3s ease;
 }
 
-.container .box-container .imgBx img{
+#picture1{
   position: absolute;
   margin-top: 25px;
-  margin-left: -125px;
-  width: 250px;
-  height: 250px;
+  margin-left: -125px
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 50%;
 }

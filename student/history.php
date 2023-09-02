@@ -197,7 +197,7 @@ if ($result && mysqli_num_rows($result) > 0) {
       $sql="select * from complaints where user_id=$user";
           $result=mysqli_query($con, $sql);
       if ($result) {
-        echo "Complaint submitted successfully!";
+       
     } else {
         echo "Error: " . mysqli_error($con);
     }

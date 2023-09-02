@@ -230,10 +230,10 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <div class="title">
                     profile
                 </div>
-                <div class="box-container">
+                    <div class="box-container">
                    
                         <div class="imgBx">
-                            <img id="picture2" src="<?php echo $imagePath;?>">
+                            <img id="picture2" src="">
                         </div>
                         <div class="box">
                             <p><strong>Username :</strong> <?php echo $row['user_name']; ?></p>

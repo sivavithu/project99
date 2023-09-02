@@ -2,7 +2,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-    ob_end_flush();
+    
 ob_start(); ?>
 <?php 
 
@@ -52,15 +52,12 @@ if ($result && mysqli_num_rows($result) > 0) {
             })
             if(window.history.replaceState){
     window.history.replaceState(null,null,window.location.href);}
-    
-    document.addEventListener("DOMContentLoaded", function() {
-            
-            const profileElementx = document.getElementById("profile2");
-            const imagePath = "<?php echo $imagePath; ?>"; 
-            
+   document.addEventListener("DOMContentLoaded", function() {
+    const profileElementx = document.getElementById("profile2");
+    const imagePath = "<?php echo $imagePath; ?>";
+    profileElementx.src = imagePath; // Update this line
+});
 
-        
-            profileElementx.src = `url(${imagePath})`;
             
             let popup = document.getElementById("popup");
 		

@@ -37,7 +37,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="./css/home.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>

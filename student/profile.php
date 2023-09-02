@@ -355,7 +355,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                         
                            
                         <div class="imgBx">
-                            <img src="images/no-image.jpg">
+                            <img id="picture2" src="">
                         </div>
 
                         <div class="box">

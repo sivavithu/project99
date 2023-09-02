@@ -172,28 +172,17 @@ if ($result && mysqli_num_rows($result) > 0) {
             profileElementx.style.backgroundSize = "60px 60px"; // Set dimensions here
         });
 
-            let popup = document.getElementById("popup");
-
-            function openPopup() {
+           let popup = document.getElementById("popup");
+		
+            function openPopup(){
                 popup.classList.add("open-popup");
             }
-
-            function closePopup() {
+            
+            function closePopup(){
                 popup.classList.remove("open-popup");
-            }
+            }	
 
-            // Set dimensions here
-        });
-
-        let popup = document.getElementById("popup");
-
-        function openPopup() {
-            popup.classList.add("open-popup");
-        }
-
-        function closePopup() {
-            popup.classList.remove("open-popup");
-        }
+       
     </script>
     <style>
         #profile2 {

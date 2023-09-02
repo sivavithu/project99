@@ -93,6 +93,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
         </script>
         <style>
+
               .history {
             border: 1px solid black;
             width: 400px;
@@ -100,19 +101,8 @@ if ($result && mysqli_num_rows($result) > 0) {
             margin: 20px;
             text-align: left;
         }
-        #profile2 {
-	border: 1px solid black;
-	height: 60px;
-	width: 60px;
-	margin: 10px;
-	border-radius: 50%; /* Set the border-radius to half of the width/height for a full circle */
-	box-shadow: 2px 3px 10px black;
-	background-color: white; /* Set a background color */
-	background-size: 100%; /* Adjust the background size to make the image smaller */
-	background-position: center; /* Center the background image */
-	
-}
         </style>
+    
 
         <title>CMS</title>
         <link rel="icon" href="f.png" sizes="120x120" type="image/png">
@@ -148,13 +138,13 @@ if ($result && mysqli_num_rows($result) > 0) {
                     </div>
                 </div>
             </div>
-            
+                 
             <div class="main_container">
                 <div class="sidebar">
                     <div class="sidebar__inner">
                         <div class="profile">
                             <div class="img">
-                            <div id="profile2"></div>
+                                <img src="images/no-image.jpg" alt="profile_pic">
                             </div>
                             <div class="profile_info">
                                 <p>Welcome</p>
@@ -196,12 +186,11 @@ if ($result && mysqli_num_rows($result) > 0) {
                     </div>
                 </div>
                 <div class="container">
-                    <center>
-                        <h2> Welcome to department of computer science complaint register portal </h2>
-                    </center>
-                    <br><br>
+                    <div class="title">
+                        your complaint history
+                    </div>
                         
-                    <div class="item1">
+                    <div class="box-container">
                         <?php
                     include "../connection.php";  
      if(!isset($_POST['search'])){
@@ -215,7 +204,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
      while($row=mysqli_fetch_assoc($result)){?>
 
-         <div class='history'>
+         <div class='box'>
             
                 <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
                 <p><strong>Date:</strong> <?php echo $row['date']; ?></p>
@@ -240,7 +229,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         
             while ($row = mysqli_fetch_assoc($result)) {?>
             
-         <div class='history'>
+         <div class='box'>
             
             <p><strong>Location:</strong> <?php echo $row['location']; ?></p>
             <p><strong>Date:</strong> <?php echo $row['date']; ?></p>
@@ -262,5 +251,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     
   ?>
 </div>
+
     </body>
 </html>

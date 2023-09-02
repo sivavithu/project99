@@ -95,6 +95,7 @@ if ($result && mysqli_num_rows($result) > 0) {
         <meta charset="UTF-8">
        <link rel="stylesheet" href="css/profile.css">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
         
@@ -112,21 +113,22 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 
 
-  
-    document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
     const profileImageElement = document.getElementById("picture1");
     const profileImageElementx = document.getElementById("picture2");
     const imagePath = "<?php echo $imagePath; ?>"; 
 
     profileImageElement.src = imagePath;
     profileImageElementx.src = imagePath;
-      
- const editButton = document.querySelector(".edit-btn");
-        editButton.addEventListener("click", function () {
-            $('#uploadModal').modal('show'); // Show the modal when "Edit" is clicked
-        });
-    });
 
+    // Hide the modal when the page loads
+    $('#uploadModal').modal('hide');
+
+    const editButton = document.querySelector(".edit-btn");
+    editButton.addEventListener("click", function () {
+        $('#uploadModal').modal('show'); // Show the modal when "Edit" is clicked
+    });
+});
 </script>
 
 <!-- ... (remaining code) ... -->
@@ -256,12 +258,14 @@ if ($result && mysqli_num_rows($result) > 0) {
             </div>
         
         </div>
-       <div id="uploadModal" class="modal">
-    <div class="modal-dialog">
+      <div id="uploadModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Upload Profile Image</h5>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 <!-- Image upload form -->
